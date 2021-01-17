@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "private": true,
   "description": "TBD",
-  "main": "server/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lfeigl/busfahrer.git"
@@ -19,9 +18,9 @@
   "homepage": "https://github.com/lfeigl/busfahrer#readme",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build && tsc --project tsconfig-server.json",
     "lint": "vue-cli-service lint",
-    "start": "node server/index.js"
+    "start": "ts-node server"
   },
   "dependencies": {
     "connect-history-api-fallback": "^1.6.0",
@@ -43,6 +42,7 @@
     "eslint": "^6.7.2",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-vue": "^6.2.2",
+    "ts-node": "^9.1.1",
     "typescript": "~3.9.3",
     "vue-template-compiler": "^2.6.11"
   }
