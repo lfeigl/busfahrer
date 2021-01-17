@@ -1,13 +1,29 @@
 {
   "name": "busfahrer",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "private": true,
+  "description": "TBD",
+  "main": "server/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lfeigl/busfahrer.git"
+  },
+  "keywords": [
+    "busfahrer"
+  ],
+  "author": "Luca Feigl",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lfeigl/busfahrer/issues"
+  },
+  "homepage": "https://github.com/lfeigl/busfahrer#readme",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "express": "^4.17.1",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vuex": "^3.4.0"
