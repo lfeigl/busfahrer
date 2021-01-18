@@ -18,10 +18,15 @@
   "homepage": "https://github.com/lfeigl/busfahrer#readme",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build && tsc --project tsconfig-server.json",
-    "lint": "vue-cli-service lint && eslint server/**/*",
-    "start": "node build",
-    "watch": "ts-node-dev --project tsconfig-server.json server"
+    "watch-client": "vue-cli-service build --watch",
+    "watch-server": "ts-node-dev --project tsconfig-server.json server",
+    "lint": "npm run lint-client && npm run lint-server",
+    "lint-client": "vue-cli-service lint --no-fix",
+    "lint-server": "eslint server/**/*",
+    "build": "npm run build-client && npm run build-server",
+    "build-client": "vue-cli-service build",
+    "build-server": "tsc --project tsconfig-server.json",
+    "start": "node build"
   },
   "husky": {
     "hooks": {
