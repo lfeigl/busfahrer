@@ -5,20 +5,60 @@
 npm install
 ```
 
-### Compiles and hot-reloads for development
+
+## Scripts
+
+### Development
+
+#### Compiles and hot-reloads the client in-memory for development
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+#### Compiles and hot-reloads the client for development
 ```
-npm run build
+npm run watch-client
 ```
 
-### Lints and fixes files
+#### Compiles and hot-reloads the server for development
+```
+npm run watch-server
+```
+
+#### Lints files on clientside and serverside
 ```
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+#### Lints files on clientside
+```
+npm run lint-client
+```
+
+#### Lints files on serverside
+```
+npm run lint-server
+```
+
+
+### Production
+
+#### Compiles and minifies the client and the server for production
+```
+npm run build
+```
+
+#### Compiles and minifies the client for production
+```
+npm run build-client
+```
+
+#### Compiles and minifies the server for production
+```
+npm run build-server
+```
+
+#### Starts the server for production
+```
+npm start
+```
