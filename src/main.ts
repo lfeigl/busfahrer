@@ -14,3 +14,11 @@ new Vue({
   vuetify,
   render: (h: Vue.CreateElement) => h(App),
 }).$mount('#app');
+
+if (module.hot) {
+  module.hot.addStatusHandler((status: string) => {
+    if (status === 'prepare') {
+      console.clear();
+    }
+  });
+}
