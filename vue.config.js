@@ -2,6 +2,9 @@ module.exports = {
   transpileDependencies: [
     'vuetify',
   ],
+  configureWebpack: {
+    devtool: 'source-map',
+  },
   chainWebpack: (config) => {
     config
       .plugin('html')

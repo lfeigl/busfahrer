@@ -18,7 +18,7 @@
   "homepage": "https://github.com/lfeigl/busfahrer#readme",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "watch-client": "vue-cli-service build --watch",
+    "watch-client": "vue-cli-service build --mode development --watch",
     "watch-server": "ts-node-dev --project tsconfig-server.json server",
     "lint": "npm run lint-client && npm run lint-server",
     "lint-client": "vue-cli-service lint --no-fix",
