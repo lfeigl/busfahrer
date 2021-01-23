@@ -1,6 +1,7 @@
 import express from 'express';
 import path from 'path';
 import historyApiFallback from 'connect-history-api-fallback';
+import attachSocketServer from './socket';
 
 const app = express();
 const distDir = path.join(__dirname, '..', 'dist');
@@ -13,6 +14,6 @@ app.get('/', (req: express.Request, res: express.Response) => {
   res.sendFile(path.join(distDir, 'index.html'));
 });
 
-app.listen(port, () => {
-  console.log(`Server listening at "http://localhost:${port}".`);
-});
+const server = app.listen(port);
+console.log(`Server listening at "http://localhost:${port}".`);
+attachSocketServer(server);
