@@ -2,7 +2,7 @@
   <v-app-bar
     app
   >
-    <v-app-bar-title>
+    <v-app-bar-title class="headline">
       <v-btn
         icon
         large
@@ -14,6 +14,14 @@
     </v-app-bar-title>
 
     <v-spacer/>
+
+    <v-btn
+      icon
+      large
+      @click="toggleTheme"
+    >
+      <v-icon>mdi-theme-light-dark</v-icon>
+    </v-btn>
 
     <v-btn
       icon
@@ -30,5 +38,16 @@ import Vue from 'vue';
 
 export default Vue.extend({
   name: 'AppBar',
+  methods: {
+    toggleTheme(): void {
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+      const theme = this.$vuetify.theme.dark ? 'dark' : 'light';
+      localStorage.setItem('theme', theme);
+    },
+  },
+  created() {
+    const theme = localStorage.getItem('theme');
+    this.$vuetify.theme.dark = theme !== 'light';
+  },
 });
 </script>
