@@ -1,6 +1,9 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { StoreState } from '@/types';
+import {
+  StoreState,
+  StoreActionContext,
+} from '@/types';
 
 Vue.use(Vuex);
 
@@ -15,10 +18,18 @@ export default new Vuex.Store({
     setUserId(state: StoreState, userId: string): void {
       state.user.id = userId;
     },
-    setUsername(state: StoreState, username: string): void {
+    setUserName(state: StoreState, username: string): void {
       state.user.name = username;
+      localStorage.setItem('username', username);
     },
   },
   actions: {
+    async initializeState(context: StoreActionContext): Promise<void> {
+      const username = localStorage.getItem('username');
+
+      if (username) {
+        context.commit('setUserName', username);
+      }
+    },
   },
 });

@@ -4,7 +4,7 @@
 
     <v-main>
       <router-view/>
-      <WelcomeDialog :is-active="welcomeDialogIsActive"/>
+      <WelcomeDialog :is-active="!user.name"/>
     </v-main>
   </v-app>
 </template>
@@ -13,6 +13,7 @@
 import Vue from 'vue';
 import AppBar from '@/components/AppBar.vue';
 import WelcomeDialog from '@/components/WelcomeDialog.vue';
+import vuex from 'vuex';
 
 export default Vue.extend({
   name: 'App',
@@ -20,10 +21,10 @@ export default Vue.extend({
     AppBar,
     WelcomeDialog,
   },
-  data() {
-    return {
-      welcomeDialogIsActive: true,
-    };
+  computed: {
+    ...vuex.mapState([
+      'user',
+    ]),
   },
 });
 </script>

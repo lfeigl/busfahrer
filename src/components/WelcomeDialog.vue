@@ -37,7 +37,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { mapMutations } from 'vuex';
+import vuex from 'vuex';
 
 export default Vue.extend({
   name: 'WelcomeDialog',
@@ -50,12 +50,12 @@ export default Vue.extend({
     };
   },
   methods: {
-    ...mapMutations([
-      'setUsername',
+    ...vuex.mapMutations([
+      'setUserName',
     ]),
     submitUsername(): void {
       const username = this.username.trim();
-      this.setUsername(username);
+      this.setUserName(username);
     },
   },
 });
