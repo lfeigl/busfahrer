@@ -56,6 +56,7 @@ export default Vue.extend({
     submitUsername(): void {
       const username = this.username.trim();
       this.setUserName(username);
+      this.username = '';
     },
   },
 });
