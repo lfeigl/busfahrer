@@ -63,8 +63,11 @@ export default Vue.extend({
     ]),
   },
   methods: {
+    ...vuex.mapMutations([
+      'setUserName',
+    ]),
     resetUsername(): void {
-      this.user.name = null;
+      this.setUserName('');
     },
   },
   data() {
