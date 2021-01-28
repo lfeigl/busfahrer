@@ -51,11 +51,11 @@ export default Vue.extend({
   },
   methods: {
     ...vuex.mapMutations([
-      'setPlayerName',
+      'SET_PLAYER_NAME',
     ]),
     submitPlayerName(): void {
       const name = this.playerName.trim();
-      this.setPlayerName(name);
+      this.SET_PLAYER_NAME(name);
       this.playerName = '';
     },
   },

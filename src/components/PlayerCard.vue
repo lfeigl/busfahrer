@@ -64,10 +64,10 @@ export default Vue.extend({
   },
   methods: {
     ...vuex.mapMutations([
-      'setPlayerName',
+      'SET_PLAYER_NAME',
     ]),
     resetPlayerName(): void {
-      this.setPlayerName('');
+      this.SET_PLAYER_NAME('');
     },
   },
   data() {

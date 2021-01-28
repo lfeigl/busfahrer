@@ -19,10 +19,10 @@ export default new Vuex.Store({
     SET_THEME(state: StoreState, theme: string): void {
       state.theme = theme;
     },
-    setPlayerId(state: StoreState, id: string): void {
+    SET_PLAYER_ID(state: StoreState, id: string): void {
       state.player.id = id;
     },
-    setPlayerName(state: StoreState, name: string): void {
+    SET_PLAYER_NAME(state: StoreState, name: string): void {
       state.player.name = name;
     },
   },
