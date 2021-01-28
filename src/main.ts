@@ -11,7 +11,6 @@ new Vue({
   router,
   store,
   vuetify,
-  async beforeCreate() { await store.dispatch('initializeState'); },
   render: (h: Vue.CreateElement) => h(App),
 }).$mount('#app');
 
