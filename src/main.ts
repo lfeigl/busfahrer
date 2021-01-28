@@ -11,7 +11,7 @@ new Vue({
   router,
   store,
   vuetify,
-  render: (h: Vue.CreateElement) => h(App),
+  render: (h: Vue.CreateElement): Vue.VNode => h(App),
 }).$mount('#app');
 
 if (module.hot) {

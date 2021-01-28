@@ -14,13 +14,16 @@ module.exports = {
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    '@typescript-eslint/typedef': 'warn',
+    '@typescript-eslint/typedef': 'error',
+    '@typescript-eslint/explicit-function-return-type': 'error',
+
   },
   overrides: [
     {
       files: ['*.js'],
       rules: {
         '@typescript-eslint/typedef': 'off',
+        '@typescript-eslint/explicit-function-return-type': 'off',
       },
     },
   ],
