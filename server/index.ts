@@ -1,6 +1,7 @@
 import express from 'express';
 import path from 'path';
 import historyApiFallback from 'connect-history-api-fallback';
+import { log } from './utils';
 import attachSocketServer from './socket';
 
 const app = express();
@@ -15,5 +16,5 @@ app.get('/', (req: express.Request, res: express.Response) => {
 });
 
 const server = app.listen(port);
-console.log(`Server listening at "http://localhost:${port}".`);
+log(`Server listening at "http://localhost:${port}".`);
 attachSocketServer(server);

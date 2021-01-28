@@ -1,6 +1,7 @@
 import { Server as SocketServer, Socket } from 'socket.io';
 import { Server as HTTPServer } from 'http';
 import { v4 as generateId } from 'uuid';
+import { log } from './utils';
 import {
   Player,
   Room,
@@ -31,10 +32,6 @@ const rooms: Rooms = {
     players: [],
   },
 };
-
-function log(message: string): void {
-  console.log('[Busfahrer]', message);
-}
 
 function cleanRooms(): void {
   Object.keys(rooms).forEach((roomId: string) => {
