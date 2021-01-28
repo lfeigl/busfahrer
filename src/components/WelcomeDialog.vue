@@ -10,7 +10,7 @@
 
       <v-card-text class="pb-0">
         <v-text-field
-          v-model="username"
+          v-model="playerName"
           autofocus
           counter
           maxlength="16"
@@ -25,8 +25,8 @@
         <v-btn
           color="primary"
           text
-          :disabled="username.replaceAll(' ', '').length === 0"
-          @click="submitUsername"
+          :disabled="playerName.replaceAll(' ', '').length === 0"
+          @click="submitPlayerName"
         >
           Einsteigen
         </v-btn>
@@ -46,17 +46,17 @@ export default Vue.extend({
   },
   data() {
     return {
-      username: '',
+      playerName: '',
     };
   },
   methods: {
     ...vuex.mapMutations([
-      'setUserName',
+      'setPlayerName',
     ]),
-    submitUsername(): void {
-      const username = this.username.trim();
-      this.setUserName(username);
-      this.username = '';
+    submitPlayerName(): void {
+      const name = this.playerName.trim();
+      this.setPlayerName(name);
+      this.playerName = '';
     },
   },
 });

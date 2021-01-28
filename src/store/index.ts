@@ -9,17 +9,17 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    user: {
+    player: {
       id: '',
       name: '',
     },
   } as StoreState,
   mutations: {
-    setUserId(state: StoreState, userId: string): void {
-      state.user.id = userId;
+    setPlayerId(state: StoreState, id: string): void {
+      state.player.id = id;
     },
-    setUserName(state: StoreState, username: string): void {
-      state.user.name = username;
+    setPlayerName(state: StoreState, name: string): void {
+      state.player.name = name;
     },
   },
   actions: {
@@ -28,7 +28,7 @@ export default new Vuex.Store({
   plugins: [
     createPersistedState({
       paths: [
-        'user',
+        'player',
       ],
     }),
   ],

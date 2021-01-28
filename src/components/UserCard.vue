@@ -1,13 +1,13 @@
 <template>
   <v-card>
     <v-card-title class="headline">
-      <span>{{ user.name || '...' }}</span>
+      <span>{{ player.name || '...' }}</span>
 
       <v-spacer/>
 
       <v-btn
         icon
-        @click="resetUsername"
+        @click="resetPlayerName"
       >
         <v-icon>mdi-account-edit</v-icon>
       </v-btn>
@@ -59,15 +59,15 @@ export default Vue.extend({
   name: 'UserCard',
   computed: {
     ...vuex.mapState([
-      'user',
+      'player',
     ]),
   },
   methods: {
     ...vuex.mapMutations([
-      'setUserName',
+      'setPlayerName',
     ]),
-    resetUsername(): void {
-      this.setUserName('');
+    resetPlayerName(): void {
+      this.setPlayerName('');
     },
   },
   data() {

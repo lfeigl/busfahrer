@@ -1,12 +1,12 @@
-import * as vuex from 'vuex';
+import { ActionContext } from 'vuex';
 
 export type StoreState = {
-  user: User;
+  player: Player;
 };
 
-export type StoreActionContext = vuex.ActionContext<StoreState, StoreState>;
+export type StoreActionContext = ActionContext<StoreState, StoreState>;
 
-export type User = {
+export type Player = {
   id: string;
   name: string;
 };
