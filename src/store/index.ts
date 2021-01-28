@@ -9,12 +9,16 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    theme: 'dark',
     player: {
       id: '',
       name: '',
     },
   } as StoreState,
   mutations: {
+    SET_THEME(state: StoreState, theme: string): void {
+      state.theme = theme;
+    },
     setPlayerId(state: StoreState, id: string): void {
       state.player.id = id;
     },
@@ -28,6 +32,7 @@ export default new Vuex.Store({
   plugins: [
     createPersistedState({
       paths: [
+        'theme',
         'player',
       ],
     }),

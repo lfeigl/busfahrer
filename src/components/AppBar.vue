@@ -35,19 +35,27 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import vuex from 'vuex';
 
 export default Vue.extend({
   name: 'AppBar',
+  computed: {
+    ...vuex.mapState([
+      'theme',
+    ]),
+  },
   methods: {
+    ...vuex.mapMutations([
+      'SET_THEME',
+    ]),
     toggleTheme(): void {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
       const theme = this.$vuetify.theme.dark ? 'dark' : 'light';
-      localStorage.setItem('theme', theme);
+      this.SET_THEME(theme);
     },
   },
   created() {
-    const theme = localStorage.getItem('theme');
-    this.$vuetify.theme.dark = theme !== 'light';
+    this.$vuetify.theme.dark = this.theme !== 'light';
   },
 });
 </script>

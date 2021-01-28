@@ -1,6 +1,7 @@
 import { ActionContext } from 'vuex';
 
 export type StoreState = {
+  theme: string;
   player: Player;
 };
 
