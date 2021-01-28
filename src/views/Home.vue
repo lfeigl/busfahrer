@@ -5,7 +5,7 @@
 
       </v-col>
       <v-col cols="5">
-        <UserCard/>
+        <PlayerCard/>
       </v-col>
     </v-row>
   </v-container>
@@ -13,12 +13,12 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import UserCard from '@/components/UserCard.vue';
+import PlayerCard from '@/components/PlayerCard.vue';
 
 export default Vue.extend({
   name: 'Home',
   components: {
-    UserCard,
+    PlayerCard,
   },
 });
 </script>
