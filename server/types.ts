@@ -1,6 +1,11 @@
 export type Player = {
   id: string;
   name: string;
+  socketId?: string;
+};
+
+export type Players = {
+  [id: string]: Player;
 };
 
 export type Room = {

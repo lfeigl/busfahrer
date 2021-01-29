@@ -4,12 +4,14 @@ import { v4 as generateId } from 'uuid';
 import { log } from './utils';
 import {
   Player,
+  Players,
   Room,
   Rooms,
   CreateRoomEventPayload,
   JoinRoomEventPayload,
 } from './types';
 
+const players: Players = {};
 const rooms: Rooms = {
   abc: {
     id: 'abc',
@@ -57,6 +59,7 @@ function handleSocketEvents(socket: Socket): void {
 
     cleanRooms();
     rooms[room.id] = room;
+    socket.join(room.id);
     log(`Player "${player.name}" (${player.id}) created room "${roomName}" (${room.id}).`);
     callback(room);
   });
@@ -75,6 +78,16 @@ function handleSocketEvents(socket: Socket): void {
 
     callback(room);
   });
+
+  socket.on('disconnect', () => {
+    const playerId = Object.keys(players).find((id: string) => players[id].socketId === socket.id);
+
+    if (playerId) {
+      const player = players[playerId];
+      delete players[playerId];
+      log(`Server removed player "${player.name}" (${playerId}).`);
+    }
+  });
 }
 
 export default function attachSocketServer(server: HTTPServer): void {
@@ -82,6 +95,15 @@ export default function attachSocketServer(server: HTTPServer): void {
   log('Socket server attached.');
 
   io.on('connection', (socket: Socket) => {
+    socket.emit('getPlayer', (player: Player) => {
+      players[player.id] = {
+        ...player,
+        socketId: socket.id,
+      };
+
+      log(`Server stored player "${player.name}" (${player.id}).`);
+    });
+
     handleSocketEvents(socket);
   });
 }
