@@ -16,6 +16,10 @@ new Vue({
     if (!store.state.player.id.length) {
       store.commit('SET_PLAYER_ID', generateId());
     }
+
+    if (store.state.player.name) {
+      this.$socket.client.emit('setPlayer', store.state.player);
+    }
   },
   render: (h: Vue.CreateElement): Vue.VNode => h(App),
 }).$mount('#app');
