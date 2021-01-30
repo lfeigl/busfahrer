@@ -18,6 +18,7 @@
 
           <v-btn
             icon
+            :disabled="playerName.replaceAll(' ', '').length === 0"
             @click="submitPlayerName"
           >
             <v-icon>mdi-check</v-icon>
