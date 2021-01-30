@@ -3,8 +3,8 @@
     <AppBar/>
 
     <v-main>
-      <router-view/>
-      <WelcomeDialog :is-active="!player.name"/>
+      <router-view v-if="playerName"/>
+      <WelcomeDialog :is-active="!playerName"/>
     </v-main>
   </v-app>
 </template>
@@ -25,6 +25,14 @@ export default Vue.extend({
     ...vuex.mapState([
       'player',
     ]),
+    playerName(): string {
+      return this.player.name;
+    },
+  },
+  watch: {
+    playerName(): void {
+      this.$socket.client.emit('setPlayer', this.player);
+    },
   },
 });
 </script>
