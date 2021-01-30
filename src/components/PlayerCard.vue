@@ -1,16 +1,52 @@
 <template>
   <v-card>
     <v-card-title class="headline">
-      <span>{{ player.name || '...' }}</span>
+      <v-container fluid>
+        <v-row
+          dense
+          v-if="isEditingPlayerName"
+        >
+          <v-text-field
+            v-model="playerName"
+            autofocus
+            counter
+            maxlength="16"
+            hint="Gib deinen Namen ein"
+            persistent-hint
+            hide-details="auto"
+          />
 
-      <v-spacer/>
+          <v-btn
+            icon
+            @click="submitPlayerName"
+          >
+            <v-icon>mdi-check</v-icon>
+          </v-btn>
 
-      <v-btn
-        icon
-        @click="resetPlayerName"
-      >
-        <v-icon>mdi-account-edit</v-icon>
-      </v-btn>
+          <v-btn
+            icon
+            @click="isEditingPlayerName = false;"
+          >
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+        </v-row>
+
+        <v-row
+          dense
+          v-else
+        >
+          <span>{{ player.name || '...' }}</span>
+
+          <v-spacer/>
+
+          <v-btn
+            icon
+            @click="editPlayerName"
+          >
+            <v-icon>mdi-account-edit</v-icon>
+          </v-btn>
+        </v-row>
+      </v-container>
     </v-card-title>
 
     <v-card-text>
@@ -66,12 +102,19 @@ export default Vue.extend({
     ...vuex.mapMutations([
       'SET_PLAYER_NAME',
     ]),
-    resetPlayerName(): void {
-      this.SET_PLAYER_NAME('');
+    editPlayerName(): void {
+      this.playerName = this.player.name;
+      this.isEditingPlayerName = true;
+    },
+    submitPlayerName(): void {
+      this.SET_PLAYER_NAME(this.playerName);
+      this.isEditingPlayerName = false;
     },
   },
   data() {
     return {
+      isEditingPlayerName: false,
+      playerName: '',
       statGroups: [
         {
           icon: '🚍',
