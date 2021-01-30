@@ -47,6 +47,15 @@ function cleanRooms(): void {
 }
 
 function handleSocketEvents(socket: Socket): void {
+  socket.on('setPlayer', (player: Player) => {
+    players[player.id] = {
+      ...player,
+      socketId: socket.id,
+    };
+
+    log(`Server stored player "${player.name}" (${player.id}).`);
+  });
+
   socket.on('createRoom', (payload: CreateRoomEventPayload, callback: Function) => {
     const { player, roomName } = payload;
     const room: Room = {
@@ -78,16 +87,6 @@ function handleSocketEvents(socket: Socket): void {
 
     callback(room);
   });
-
-  socket.on('disconnect', () => {
-    const playerId = Object.keys(players).find((id: string) => players[id].socketId === socket.id);
-
-    if (playerId) {
-      const player = players[playerId];
-      delete players[playerId];
-      log(`Server removed player "${player.name}" (${playerId}).`);
-    }
-  });
 }
 
 export default function attachSocketServer(server: HTTPServer): void {
@@ -95,15 +94,6 @@ export default function attachSocketServer(server: HTTPServer): void {
   log('Socket server attached.');
 
   io.on('connection', (socket: Socket) => {
-    socket.emit('getPlayer', (player: Player) => {
-      players[player.id] = {
-        ...player,
-        socketId: socket.id,
-      };
-
-      log(`Server stored player "${player.name}" (${player.id}).`);
-    });
-
     handleSocketEvents(socket);
   });
 }
