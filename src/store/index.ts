@@ -62,7 +62,16 @@ export default new Vuex.Store({
         averageGulpsDispensed: '∅ Schlücke pro Fahrt',
       },
     },
-    room: {},
+    room: {
+      id: '',
+      name: '',
+      isOpen: false,
+      owner: {
+        id: '',
+        name: '',
+      },
+      players: {},
+    },
   } as StoreState,
   mutations: {
     SET_THEME(state: StoreState, theme: string): void {

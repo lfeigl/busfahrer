@@ -90,6 +90,11 @@
 import Vue from 'vue';
 import vuex from 'vuex';
 import { isEmptyString } from '@/utils';
+import {
+  PlayerStat,
+  FormattedPlayerStat,
+  FormattedPlayerStatsGroup,
+} from '@/types';
 
 export default Vue.extend({
   name: 'PlayerCard',
@@ -105,12 +110,12 @@ export default Vue.extend({
       'playerStats',
       'playerStatsFormatting',
     ]),
-    statGroups(): object[] {
-      const groupsByName = {};
+    statGroups(): FormattedPlayerStatsGroup[] {
+      const groupsByName: { [groupName: string]: FormattedPlayerStat[] } = {};
 
       Object.keys(this.playerStats).forEach((statKey: string) => {
-        const stat = this.playerStats[statKey];
-        const statFormatted = {
+        const stat: PlayerStat = this.playerStats[statKey];
+        const statFormatted: FormattedPlayerStat = {
           key: statKey,
           value: stat.value,
           title: this.playerStatsFormatting.titles[statKey],

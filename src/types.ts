@@ -30,10 +30,23 @@ export type PlayerStat = {
   groupName: string;
 };
 
+export type FormattedPlayerStat = {
+  key: string;
+  value: number;
+  title: string;
+};
+
+export type FormattedPlayerStatsGroup = {
+  stats: FormattedPlayerStat[];
+  icon: string;
+};
+
 export type Room = {
-  id?: string;
-  name?: string;
-  owner?: string;
-  isOpen?: boolean;
-  players?: Player[];
+  id: string;
+  name: string;
+  isOpen: boolean;
+  owner: Player;
+  players: {
+    [playerId: string]: Player;
+  };
 };
