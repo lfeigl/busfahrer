@@ -3,15 +3,12 @@ import { Server as HTTPServer } from 'http';
 import { v4 as generateId } from 'uuid';
 import { log } from './utils';
 import {
-  Player,
-  Players,
   Room,
   Rooms,
   CreateRoomEventPayload,
-  JoinRoomEventPayload,
+  JoinLeaveRoomEventPayload,
 } from './types';
 
-const players: Players = {};
 const rooms: Rooms = {
   abc: {
     id: 'abc',
@@ -21,7 +18,7 @@ const rooms: Rooms = {
       id: 'A1',
       name: 'ROOT',
     },
-    players: [],
+    players: {},
   },
   xyz: {
     id: 'xyz',
@@ -31,7 +28,7 @@ const rooms: Rooms = {
       id: 'A1',
       name: 'ROOT',
     },
-    players: [],
+    players: {},
   },
 };
 
@@ -47,15 +44,6 @@ function cleanRooms(): void {
 }
 
 function handleSocketEvents(socket: Socket): void {
-  socket.on('setPlayer', (player: Player) => {
-    players[player.id] = {
-      ...player,
-      socketId: socket.id,
-    };
-
-    log(`Server stored player "${player.name}" (${player.id}).`);
-  });
-
   socket.on('createRoom', (payload: CreateRoomEventPayload, callback: Function) => {
     const { player, roomName } = payload;
     const room: Room = {
@@ -63,7 +51,9 @@ function handleSocketEvents(socket: Socket): void {
       name: roomName,
       isOpen: true,
       owner: player,
-      players: [player],
+      players: {
+        [player.id]: player,
+      },
     };
 
     cleanRooms();
@@ -73,15 +63,32 @@ function handleSocketEvents(socket: Socket): void {
     callback(room);
   });
 
-  socket.on('joinRoom', (payload: JoinRoomEventPayload, callback: Function) => {
+  socket.on('joinRoom', (payload: JoinLeaveRoomEventPayload, callback: Function) => {
     const { player, roomId } = payload;
     const room = rooms[roomId];
 
     if (room && room.isOpen) {
-      if (!room.players.find((joinedPlayer: Player) => joinedPlayer.id === player.id)) {
-        socket.join(roomId);
-        room.players.push(player);
-        log(`Player "${player.name}" (${player.id}) joined room "${room.name}" (${roomId}).`);
+      socket.join(roomId);
+      room.players[player.id] = player;
+      log(`Player "${player.name}" (${player.id}) joined room "${room.name}" (${roomId}).`);
+    }
+
+    callback(room);
+  });
+
+  socket.on('leaveRoom', (payload: JoinLeaveRoomEventPayload, callback: Function) => {
+    const { player, roomId } = payload;
+    const room = rooms[roomId];
+
+    if (room) {
+      socket.leave(roomId);
+      delete room.players[player.id];
+      log(`Player "${player.name}" (${player.id}) left room "${room.name}" (${roomId}).`);
+
+      if (room.owner.id === player.id) {
+        delete rooms[roomId];
+        log(`Player "${player.name}" (${player.id}) was owner of room`,
+          `"${room.name}" (${roomId}). Server removed room.`);
       }
     }
 

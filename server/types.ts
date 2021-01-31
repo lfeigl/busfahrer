@@ -13,7 +13,7 @@ export type Room = {
   name: string;
   isOpen: boolean;
   owner: Player;
-  players: Player[];
+  players: Players;
 };
 
 export type Rooms = {
@@ -25,7 +25,7 @@ export type CreateRoomEventPayload = {
   roomName: string;
 };
 
-export type JoinRoomEventPayload = {
+export type JoinLeaveRoomEventPayload = {
   player: Player;
   roomId: string;
 };
