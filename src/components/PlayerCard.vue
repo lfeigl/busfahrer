@@ -73,7 +73,7 @@
                 <v-list-item>
                   <v-list-item-content>
                     <v-list-item-title class="headline">{{ stat.value }}</v-list-item-title>
-                    <v-list-item-subtitle class="subtitle-1">{{ stat.name }}</v-list-item-subtitle>
+                    <v-list-item-subtitle class="subtitle-1">{{ stat.title }}</v-list-item-subtitle>
                   </v-list-item-content>
                 </v-list-item>
               </v-col>
@@ -93,10 +93,40 @@ import { isEmptyString } from '@/utils';
 
 export default Vue.extend({
   name: 'PlayerCard',
+  data() {
+    return {
+      isEditingPlayerName: false,
+      playerName: '',
+    };
+  },
   computed: {
     ...vuex.mapState([
       'player',
+      'playerStatsFormatting',
     ]),
+    statGroups(): object[] {
+      const groupsByName = {};
+
+      Object.keys(this.player.stats).forEach((statKey: string) => {
+        const stat = this.player.stats[statKey];
+        const statFormatted = {
+          key: statKey,
+          value: stat.value,
+          title: this.playerStatsFormatting.titles[statKey],
+        };
+
+        if (groupsByName[stat.groupName]) {
+          groupsByName[stat.groupName].push(statFormatted);
+        } else {
+          groupsByName[stat.groupName] = [statFormatted];
+        }
+      });
+
+      return Object.keys(groupsByName).map((groupName: string) => ({
+        stats: groupsByName[groupName],
+        icon: this.playerStatsFormatting.groupIcons[groupName],
+      }));
+    },
   },
   methods: {
     isEmptyString,
@@ -111,59 +141,6 @@ export default Vue.extend({
       this.SET_PLAYER_NAME(this.playerName);
       this.isEditingPlayerName = false;
     },
-  },
-  data() {
-    return {
-      isEditingPlayerName: false,
-      playerName: '',
-      statGroups: [
-        {
-          icon: '🚍',
-          stats: [
-            {
-              key: 'totalFahrten',
-              name: 'Fahrten',
-              value: 0,
-            },
-            {
-              key: 'totalBusfahrer',
-              name: 'davon Busfahrer gewesen',
-              value: 0,
-            },
-          ],
-        },
-        {
-          icon: '🍺',
-          stats: [
-            {
-              key: 'totalGulpsReceived',
-              name: 'Schlücke bekommen',
-              value: 0,
-            },
-            {
-              key: 'averageGulpsReceived',
-              name: '∅ Schlücke pro Fahrt',
-              value: 0,
-            },
-          ],
-        },
-        {
-          icon: '🍻',
-          stats: [
-            {
-              key: 'totalGulpsDispensed',
-              name: 'Schlücke verteilt',
-              value: 0,
-            },
-            {
-              key: 'averageGulpsDispensed',
-              name: '∅ Schlücke pro Fahrt',
-              value: 0,
-            },
-          ],
-        },
-      ],
-    };
   },
 });
 </script>
