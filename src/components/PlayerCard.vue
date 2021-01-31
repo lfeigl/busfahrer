@@ -8,11 +8,9 @@
         >
           <v-text-field
             v-model="playerName"
-            autofocus
             counter
             maxlength="16"
-            hint="Gib deinen Namen ein"
-            persistent-hint
+            label="Dein Name"
             hide-details="auto"
           />
 
