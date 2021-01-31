@@ -6,16 +6,14 @@
   >
     <v-card>
       <v-card-title class="headline">Willkommen!</v-card-title>
-      <v-card-subtitle class="subtitle-1 pb-0">Bitte einsteigen!</v-card-subtitle>
+      <v-card-subtitle class="subtitle-1">Bitte einsteigen!</v-card-subtitle>
 
-      <v-card-text class="pb-0">
+      <v-card-text>
         <v-text-field
           v-model="playerName"
-          autofocus
           counter
           maxlength="16"
-          hint="Gib deinen Namen ein"
-          persistent-hint
+          label="Dein Name"
           hide-details="auto"
         />
       </v-card-text>
