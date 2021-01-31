@@ -9,28 +9,7 @@ import {
   JoinLeaveRoomEventPayload,
 } from './types';
 
-const rooms: Rooms = {
-  abc: {
-    id: 'abc',
-    name: 'TestRoom1',
-    isOpen: true,
-    owner: {
-      id: 'A1',
-      name: 'ROOT',
-    },
-    players: {},
-  },
-  xyz: {
-    id: 'xyz',
-    name: 'TestRoom2',
-    isOpen: true,
-    owner: {
-      id: 'A1',
-      name: 'ROOT',
-    },
-    players: {},
-  },
-};
+const rooms: Rooms = {};
 
 function cleanRooms(): void {
   Object.keys(rooms).forEach((roomId: string) => {
@@ -38,7 +17,7 @@ function cleanRooms(): void {
 
     if (!room.players.length) {
       delete rooms[roomId];
-      log(`Server removed room "${room.name}" (${room.id}).`);
+      log(`Server removed empty room "${room.name}" (${room.id}).`);
     }
   });
 }
