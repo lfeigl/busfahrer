@@ -51,14 +51,11 @@ function handleSocketEvents(socket: Socket): void {
       name: roomName,
       isOpen: true,
       owner: player,
-      players: {
-        [player.id]: player,
-      },
+      players: {},
     };
 
     cleanRooms();
     rooms[room.id] = room;
-    socket.join(room.id);
     log(`Player "${player.name}" (${player.id}) created room "${roomName}" (${room.id}).`);
     callback(room);
   });
