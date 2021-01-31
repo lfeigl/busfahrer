@@ -18,7 +18,7 @@
 
           <v-btn
             icon
-            :disabled="playerName.replaceAll(' ', '').length === 0"
+            :disabled="isEmptyString(playerName)"
             @click="submitPlayerName"
           >
             <v-icon>mdi-check</v-icon>
@@ -91,6 +91,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import vuex from 'vuex';
+import { isEmptyString } from '@/utils';
 
 export default Vue.extend({
   name: 'PlayerCard',
@@ -100,6 +101,7 @@ export default Vue.extend({
     ]),
   },
   methods: {
+    isEmptyString,
     ...vuex.mapMutations([
       'SET_PLAYER_NAME',
     ]),
