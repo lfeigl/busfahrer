@@ -45,7 +45,10 @@ function handleSocketEvents(socket: Socket): void {
 
     if (room && room.isOpen) {
       socket.join(roomId);
-      room.players[player.id] = player;
+      room.players[player.id] = {
+        ...player,
+        socketId: socket.id,
+      };
       log(`Player "${player.name}" (${player.id}) joined room "${room.name}" (${roomId}).`);
     }
 
