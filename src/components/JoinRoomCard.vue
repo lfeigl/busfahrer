@@ -5,8 +5,9 @@
     </v-card-title>
 
     <v-card-text>
-      Lass dir einen Link zusenden, um in einen Bus einzusteigen:
-      <code>{{ exampleJoinLink }}</code>
+      Lass dir einen Link zusenden, um in einen Bus einzusteigen!
+      <br/>
+      Beispiel: <code>{{ exampleJoinLink }}</code>
     </v-card-text>
   </v-card>
 </template>
@@ -21,7 +22,7 @@ export default Vue.extend({
       return window.location.origin + this.$router.resolve({
         name: 'Join',
         params: {
-          roomId: '...',
+          roomId: 'busfahrt',
         },
       }).href;
     },
