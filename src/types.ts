@@ -5,6 +5,9 @@ export type StoreActionContext = ActionContext<StoreState, StoreState>;
 export type StoreState = {
   theme: string;
   player: Player;
+  playerStats: {
+    [statKey: string]: PlayerStat;
+  };
   playerStatsFormatting: {
     groupIcons: {
       [groupName: string]: string;
@@ -19,9 +22,6 @@ export type StoreState = {
 export type Player = {
   id: string;
   name: string;
-  stats: {
-    [key: string]: PlayerStat;
-  };
 };
 
 export type PlayerStat = {

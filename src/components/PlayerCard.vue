@@ -102,13 +102,14 @@ export default Vue.extend({
   computed: {
     ...vuex.mapState([
       'player',
+      'playerStats',
       'playerStatsFormatting',
     ]),
     statGroups(): object[] {
       const groupsByName = {};
 
-      Object.keys(this.player.stats).forEach((statKey: string) => {
-        const stat = this.player.stats[statKey];
+      Object.keys(this.playerStats).forEach((statKey: string) => {
+        const stat = this.playerStats[statKey];
         const statFormatted = {
           key: statKey,
           value: stat.value,

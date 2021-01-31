@@ -14,37 +14,37 @@ export default new Vuex.Store({
     player: {
       id: '',
       name: '',
-      stats: {
-        totalGames: {
-          key: 'totalGames',
-          value: 0,
-          groupName: 'games',
-        },
-        totalBusfahrer: {
-          key: 'totalBusfahrer',
-          value: 0,
-          groupName: 'games',
-        },
-        totalGulpsReceived: {
-          key: 'totalGulpsReceived',
-          value: 0,
-          groupName: 'gulpsReceived',
-        },
-        averageGulpsReceived: {
-          key: 'averageGulpsReceived',
-          value: 0,
-          groupName: 'gulpsReceived',
-        },
-        totalGulpsDispensed: {
-          key: 'totalGulpsDispensed',
-          value: 0,
-          groupName: 'gulpsDispensed',
-        },
-        averageGulpsDispensed: {
-          key: 'averageGulpsDispensed',
-          value: 0,
-          groupName: 'gulpsDispensed',
-        },
+    },
+    playerStats: {
+      totalGames: {
+        key: 'totalGames',
+        value: 0,
+        groupName: 'games',
+      },
+      totalBusfahrer: {
+        key: 'totalBusfahrer',
+        value: 0,
+        groupName: 'games',
+      },
+      totalGulpsReceived: {
+        key: 'totalGulpsReceived',
+        value: 0,
+        groupName: 'gulpsReceived',
+      },
+      averageGulpsReceived: {
+        key: 'averageGulpsReceived',
+        value: 0,
+        groupName: 'gulpsReceived',
+      },
+      totalGulpsDispensed: {
+        key: 'totalGulpsDispensed',
+        value: 0,
+        groupName: 'gulpsDispensed',
+      },
+      averageGulpsDispensed: {
+        key: 'averageGulpsDispensed',
+        value: 0,
+        groupName: 'gulpsDispensed',
       },
     },
     playerStatsFormatting: {
@@ -86,6 +86,7 @@ export default new Vuex.Store({
       paths: [
         'theme',
         'player',
+        'playerStats',
       ],
     }),
   ],
