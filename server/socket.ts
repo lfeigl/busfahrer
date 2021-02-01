@@ -49,7 +49,9 @@ function handleSocketEvents(socket: Socket): void {
         ...player,
         socketId: socket.id,
       };
+
       log(`Player "${player.name}" (${player.id}) joined room "${room.name}" (${roomId}).`);
+      socket.to(roomId).emit('playerJoinedRoom', player);
     }
 
     callback(room);
@@ -68,6 +70,9 @@ function handleSocketEvents(socket: Socket): void {
         delete rooms[roomId];
         log(`Player "${player.name}" (${player.id}) was owner of room`,
           `"${room.name}" (${roomId}). Server removed room.`);
+        socket.to(roomId).emit('ownerLeftRoom');
+      } else {
+        socket.to(roomId).emit('playerLeftRoom', player);
       }
     }
 

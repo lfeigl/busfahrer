@@ -4,7 +4,9 @@ import createPersistedState from 'vuex-persistedstate';
 import initialState from '@/store/initial-state';
 import {
   StoreState,
+  StoreActionContext,
   Room,
+  Player,
 } from '@/types';
 
 Vue.use(Vuex);
@@ -24,9 +26,23 @@ export default new Vuex.Store({
     SET_ROOM(state: StoreState, room: Room): void {
       state.room = room;
     },
+    ADD_PLAYER(state: StoreState, player: Player): void {
+      Vue.set(state.room.players, player.id, player);
+    },
+    REMOVE_PLAYER(state: StoreState, player: Player): void {
+      Vue.delete(state.room.players, player.id);
+    },
   },
   actions: {
-
+    socketPlayerJoinedRoom(context: StoreActionContext, player: Player): void {
+      context.commit('ADD_PLAYER', player);
+    },
+    socketPlayerLeftRoom(context: StoreActionContext, player: Player): void {
+      context.commit('REMOVE_PLAYER', player);
+    },
+    socketOwnerLeftRoom(context: StoreActionContext): void {
+      context.commit('SET_ROOM', initialState.room);
+    },
   },
   plugins: [
     createPersistedState({
