@@ -6,7 +6,7 @@
   >
     <v-card>
       <v-card-title class="headline">
-        Hinweis
+        Warnung
       </v-card-title>
 
       <v-card-text>

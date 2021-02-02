@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-title class="headline">
-      Einsteigen in Buslinie "{{ room.name }}"
+      In Bus der Linie "{{ room.name }}" einsteigen
     </v-card-title>
 
     <v-card-text>
@@ -69,7 +69,7 @@ export default Vue.extend({
       'SET_ACTIVE_DIALOG',
     ]),
     leaveRoom(): void {
-      if (this.room.owner.id === this.player.id) {
+      if (this.room.owner.id === this.player.id && Object.keys(this.room.players).length > 1) {
         this.SET_ACTIVE_DIALOG({
           dialogName: 'removeRoom',
           isActive: true,
