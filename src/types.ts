@@ -4,6 +4,9 @@ export type StoreActionContext = ActionContext<StoreState, StoreState>;
 
 export type StoreState = {
   theme: string;
+  activeDialogs: {
+    [dialogName: string]: boolean;
+  };
   player: Player;
   playerStats: {
     [statKey: string]: PlayerStat;
@@ -17,6 +20,11 @@ export type StoreState = {
     };
   };
   room: Room;
+};
+
+export type SetActiveDialogMutationPayload = {
+  dialogName: string;
+  isActive: boolean;
 };
 
 export type Player = {

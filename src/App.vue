@@ -3,8 +3,8 @@
     <AppBar/>
 
     <v-main>
+      <WelcomeDialog/>
       <router-view v-if="playerName"/>
-      <WelcomeDialog :is-active="!playerName"/>
     </v-main>
   </v-app>
 </template>

@@ -5,6 +5,7 @@ import initialState from '@/store/initial-state';
 import {
   StoreState,
   StoreActionContext,
+  SetActiveDialogMutationPayload,
   Room,
   Player,
 } from '@/types';
@@ -17,6 +18,9 @@ export default new Vuex.Store({
   mutations: {
     SET_THEME(state: StoreState, theme: string): void {
       state.theme = theme;
+    },
+    SET_ACTIVE_DIALOG(state: StoreState, payload: SetActiveDialogMutationPayload): void {
+      state.activeDialogs[payload.dialogName] = payload.isActive;
     },
     SET_PLAYER_ID(state: StoreState, id: string): void {
       state.player.id = id;

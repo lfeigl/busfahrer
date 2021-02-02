@@ -1,6 +1,6 @@
 <template>
   <v-dialog
-    v-model="isActive"
+    v-model="activeDialogs.welcome"
     persistent
     width="unset"
   >
@@ -40,23 +40,30 @@ import { isEmptyString } from '@/utils';
 
 export default Vue.extend({
   name: 'WelcomeDialog',
-  props: {
-    isActive: Boolean,
-  },
   data() {
     return {
       playerName: '',
     };
   },
+  computed: {
+    ...vuex.mapState([
+      'activeDialogs',
+    ]),
+  },
   methods: {
     isEmptyString,
     ...vuex.mapMutations([
       'SET_PLAYER_NAME',
+      'SET_ACTIVE_DIALOG',
     ]),
     submitPlayerName(): void {
       const name = this.playerName.trim();
       this.SET_PLAYER_NAME(name);
       this.playerName = '';
+      this.SET_ACTIVE_DIALOG({
+        dialogName: 'welcome',
+        isActive: false,
+      });
     },
   },
 });

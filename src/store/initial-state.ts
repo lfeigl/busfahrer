@@ -2,6 +2,10 @@ import { StoreState } from '@/types';
 
 const initialState: StoreState = {
   theme: 'dark',
+  activeDialogs: {
+    welcome: false,
+    removeRoom: false,
+  },
   player: {
     id: '',
     name: '',
