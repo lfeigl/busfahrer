@@ -34,7 +34,7 @@
         x-large
         color="primary"
         text
-        :disabled="room.owner.id !== player.id"
+        :disabled="room.owner.id !== player.id || Object.keys(room.players).length < 2"
         @click="startGame"
       >
         Losfahren
