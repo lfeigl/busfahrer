@@ -20,9 +20,9 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import JoinRoomCard from '@/components/JoinRoomCard.vue';
-import CreateRoomCard from '@/components/CreateRoomCard.vue';
-import PlayerCard from '@/components/PlayerCard.vue';
+import JoinRoomCard from '@/components/home/JoinRoomCard.vue';
+import CreateRoomCard from '@/components/home/CreateRoomCard.vue';
+import PlayerCard from '@/components/home/PlayerCard.vue';
 
 export default Vue.extend({
   name: 'Home',
