@@ -34,6 +34,7 @@
         x-large
         color="primary"
         text
+        :disabled="room.owner.id !== player.id"
         @click="startGame"
       >
         Losfahren
@@ -50,6 +51,7 @@ export default Vue.extend({
   name: 'ControlCard',
   computed: {
     ...vuex.mapState([
+      'player',
       'room',
     ]),
     joinLink(): string {
