@@ -1,7 +1,14 @@
 <template>
   <v-container fluid>
-    <h1>Einsteigen: {{ room.name }}</h1>
-    <pre>{{ room }}</pre>
+    <v-row>
+      <v-col cols="8">
+        <ControlCard/>
+      </v-col>
+
+      <v-col cols="4">
+        <PlayersCard/>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -9,12 +16,18 @@
 import Vue from 'vue';
 import vuex from 'vuex';
 import { Route } from 'vue-router';
+import ControlCard from '@/components/join/ControlCard.vue';
+import PlayersCard from '@/components/join/PlayersCard.vue';
 import {
   Room,
 } from '@/types';
 
 export default Vue.extend({
   name: 'Join',
+  components: {
+    ControlCard,
+    PlayersCard,
+  },
   computed: {
     ...vuex.mapState([
       'player',
