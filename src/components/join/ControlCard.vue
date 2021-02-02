@@ -40,15 +40,21 @@
         Losfahren
       </v-btn>
     </v-card-actions>
+
+    <RemoveRoomDialog/>
   </v-card>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
 import vuex from 'vuex';
+import RemoveRoomDialog from '@/components/join/RemoveRoomDialog.vue';
 
 export default Vue.extend({
   name: 'ControlCard',
+  components: {
+    RemoveRoomDialog,
+  },
   computed: {
     ...vuex.mapState([
       'player',
@@ -59,10 +65,20 @@ export default Vue.extend({
     },
   },
   methods: {
+    ...vuex.mapMutations([
+      'SET_ACTIVE_DIALOG',
+    ]),
     leaveRoom(): void {
-      this.$router.push({
-        name: 'Home',
-      });
+      if (this.room.owner.id === this.player.id) {
+        this.SET_ACTIVE_DIALOG({
+          dialogName: 'removeRoom',
+          isActive: true,
+        });
+      } else {
+        this.$router.push({
+          name: 'Home',
+        });
+      }
     },
     startGame(): void {
       console.log(this.room);
