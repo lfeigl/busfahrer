@@ -12,8 +12,8 @@
 <script lang="ts">
 import Vue from 'vue';
 import vuex from 'vuex';
-import AppBar from '@/components/AppBar.vue';
-import WelcomeDialog from '@/components/WelcomeDialog.vue';
+import AppBar from '@/components/common/AppBar.vue';
+import WelcomeDialog from '@/components/common/WelcomeDialog.vue';
 
 export default Vue.extend({
   name: 'App',
