@@ -20,12 +20,12 @@ export type Rooms = {
   [id: string]: Room;
 };
 
-export type CreateRoomEventPayload = {
+export type CreateRoomPayload = {
   player: Player;
   roomName: string;
 };
 
-export type JoinLeaveRoomEventPayload = {
+export type JoinLeaveRoomPayload = {
   player: Player;
   roomId: string;
 };
