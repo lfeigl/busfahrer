@@ -62,3 +62,16 @@ npm run build-server
 ```
 npm start
 ```
+
+
+## Arguments
+
+Server accepts following arguments:
+
+Argument | Type | Description | Default value | Example usage
+--- | --- | --- | --- | ---
+`port` | `number` | Port on which the server listens. | `1337` | `npm start -- --port 3000`
+`log` | `boolean` | Whether to keep a log file (`./busfahrer.log`) or not. | `false` | `npm start -- --log`
+
+- *Production: `npm start`*
+- *Development: `npm run watch-server`*
