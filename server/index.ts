@@ -1,19 +1,19 @@
 import express from 'express';
-import path from 'path';
+import { join as joinPath } from 'path';
 import historyApiFallback from 'connect-history-api-fallback';
 import argv from './argv';
 import { log } from './utils';
 import attachSocketServer from './socket';
 
 const app = express();
-const distDir = path.join(__dirname, '..', 'dist');
+const distDir = joinPath(__dirname, '..', 'dist');
 const port = argv.port || 1337;
 
 app.use(historyApiFallback());
 app.use(express.static(distDir));
 
 app.get('/', (req: express.Request, res: express.Response) => {
-  res.sendFile(path.join(distDir, 'index.html'));
+  res.sendFile(joinPath(distDir, 'index.html'));
 });
 
 const server = app.listen(port);
