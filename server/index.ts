@@ -1,12 +1,13 @@
 import express from 'express';
 import path from 'path';
 import historyApiFallback from 'connect-history-api-fallback';
+import argv from './argv';
 import { log } from './utils';
 import attachSocketServer from './socket';
 
 const app = express();
 const distDir = path.join(__dirname, '..', 'dist');
-const port = 1337;
+const port = argv.port || 1337;
 
 app.use(historyApiFallback());
 app.use(express.static(distDir));
