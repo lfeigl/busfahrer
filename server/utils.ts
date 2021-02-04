@@ -4,7 +4,7 @@ import argv from './argv';
 
 export function writeToLogFile(...messages: string[]): void {
   const logPath = joinPath(__dirname, '..', 'busfahrer.log');
-  const logMessage = `${messages.join(' ')}\n`;
+  const logMessage = `[${new Date().toLocaleString()}] ${messages.join(' ')}\n`;
 
   appendFileSync(logPath, logMessage);
 }
