@@ -1,6 +1,12 @@
 import { StoreState } from '@/types';
 
 const initialState: StoreState = {
+  busfahrerApp: {
+    name: process.env.VUE_APP_NAME,
+    version: process.env.VUE_APP_VERSION,
+    author: process.env.VUE_APP_AUTHOR,
+    homepage: process.env.VUE_APP_HOMEPAGE,
+  },
   theme: 'dark',
   activeDialogs: {
     welcome: false,

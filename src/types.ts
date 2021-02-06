@@ -3,6 +3,7 @@ import { ActionContext } from 'vuex';
 export type StoreActionContext = ActionContext<StoreState, StoreState>;
 
 export type StoreState = {
+  busfahrerApp: BusfahrerApp;
   theme: string;
   activeDialogs: {
     [dialogName: string]: boolean;
@@ -25,6 +26,13 @@ export type StoreState = {
 export type SetActiveDialogMutationPayload = {
   dialogName: string;
   isActive: boolean;
+};
+
+export type BusfahrerApp = {
+  name: string;
+  version: string;
+  author: string;
+  homepage: string;
 };
 
 export type Player = {
