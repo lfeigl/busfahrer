@@ -1,3 +1,20 @@
+const {
+  name,
+  version,
+  author,
+  homepage,
+} = require('./package.json');
+
+const appName = name
+  .split('-')
+  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+  .join(' ');
+
+process.env.VUE_APP_NAME = appName;
+process.env.VUE_APP_VERSION = version;
+process.env.VUE_APP_AUTHOR = author;
+process.env.VUE_APP_HOMEPAGE = homepage;
+
 module.exports = {
   transpileDependencies: [
     'vuetify',
@@ -9,15 +26,9 @@ module.exports = {
     config
       .plugin('html')
       .tap((args) => {
-        let { title } = args[0];
+        const arg = args[0];
 
-        title = title
-          .split('-')
-          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-          .join(' ');
-
-        // eslint-disable-next-line no-param-reassign
-        args[0].title = title;
+        arg.title = appName;
 
         return args;
       });
