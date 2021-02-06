@@ -1,13 +1,13 @@
 <template>
   <v-app>
-    <AppBar/>
+    <AppBar v-if="playerName"/>
 
     <v-main>
       <WelcomeDialog/>
       <router-view v-if="playerName"/>
     </v-main>
 
-    <Footer/>
+    <Footer v-if="playerName"/>
   </v-app>
 </template>
 
