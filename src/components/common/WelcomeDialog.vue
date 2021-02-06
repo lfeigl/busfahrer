@@ -5,7 +5,7 @@
     width="unset"
   >
     <v-card>
-      <v-card-title class="headline">Willkommen!</v-card-title>
+      <v-card-title class="headline">Willkommen zu Busfahrer!</v-card-title>
       <v-card-subtitle class="subtitle-1">Bitte einsteigen!</v-card-subtitle>
 
       <v-card-text>
@@ -16,6 +16,20 @@
           label="Dein Name"
           hide-details="auto"
         />
+
+        <v-checkbox
+          v-model="isOfLegalAge"
+          label="Ich darf in meinem Land legal Alkohol konsumieren."
+        />
+
+        <v-alert
+          class="mt-4"
+          type="success"
+          outlined
+        >
+          Es werden <strong>keine</strong> personenbezogene Daten erhoben
+          und <strong>keine</strong> Cookies verwendet.
+        </v-alert>
       </v-card-text>
 
       <v-card-actions>
@@ -23,7 +37,7 @@
         <v-btn
           color="primary"
           text
-          :disabled="isEmptyString(playerName)"
+          :disabled="isEmptyString(playerName) || !isOfLegalAge"
           @click="submitPlayerName"
         >
           Einsteigen
@@ -43,6 +57,7 @@ export default Vue.extend({
   data() {
     return {
       playerName: '',
+      isOfLegalAge: false,
     };
   },
   computed: {
