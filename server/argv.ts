@@ -1,9 +1,5 @@
-import parseArgv, { Arguments } from 'yargs-parser';
-
-type Argv = Arguments & {
-  port?: number;
-  log?: boolean;
-};
+import parseArgv from 'yargs-parser';
+import { Argv } from './types';
 
 const argv: Argv = parseArgv(process.argv.slice(2));
 
