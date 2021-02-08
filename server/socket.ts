@@ -58,23 +58,31 @@ function leaveJoinedRooms(socket: PlayerSocket): void {
   });
 }
 
+function createRoom(socket: PlayerSocket, roomName: string, callback?: Function): void {
+  const { player } = socket;
+  const room: Room = {
+    id: generateId(),
+    name: roomName,
+    isOpen: true,
+    owner: player,
+    players: {},
+  };
+
+  cleanRooms();
+  rooms[room.id] = room;
+  log(`Player "${player.name}" (${player.id}) created room "${roomName}" (${room.id}).`);
+
+  if (callback) {
+    callback(room);
+  }
+}
+
 function handlePlayerSocketEvents(socket: Socket, _player: Player): void {
   const playerSocket: PlayerSocket = Object.assign(socket, { player: _player });
 
   playerSocket.on('createRoom', (payload: CreateRoomPayload, callback: Function) => {
-    const { player, roomName } = payload;
-    const room: Room = {
-      id: generateId(),
-      name: roomName,
-      isOpen: true,
-      owner: player,
-      players: {},
-    };
-
-    cleanRooms();
-    rooms[room.id] = room;
-    log(`Player "${player.name}" (${player.id}) created room "${roomName}" (${room.id}).`);
-    callback(room);
+    const { roomName } = payload;
+    createRoom(playerSocket, roomName, callback);
   });
 
   playerSocket.on('joinRoom', (payload: JoinLeaveRoomPayload, callback: Function) => {
