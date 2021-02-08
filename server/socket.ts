@@ -77,6 +77,28 @@ function createRoom(socket: PlayerSocket, roomName: string, callback?: Function)
   }
 }
 
+function joinRoom(socket: PlayerSocket, roomId: string, callback?: Function): void {
+  const { player } = socket;
+  const room = rooms[roomId];
+
+  leaveJoinedRooms(socket);
+
+  if (room && room.isOpen) {
+    socket.join(roomId);
+    room.players[player.id] = {
+      ...player,
+      socketId: socket.id,
+    };
+
+    log(`Player "${player.name}" (${player.id}) joined room "${room.name}" (${roomId}).`);
+    socket.to(roomId).emit('playerJoinedRoom', player);
+  }
+
+  if (callback) {
+    callback(room);
+  }
+}
+
 function handlePlayerSocketEvents(socket: Socket, _player: Player): void {
   const playerSocket: PlayerSocket = Object.assign(socket, { player: _player });
 
@@ -86,23 +108,8 @@ function handlePlayerSocketEvents(socket: Socket, _player: Player): void {
   });
 
   playerSocket.on('joinRoom', (payload: JoinLeaveRoomPayload, callback: Function) => {
-    const { player, roomId } = payload;
-    const room = rooms[roomId];
-
-    leaveJoinedRooms(playerSocket);
-
-    if (room && room.isOpen) {
-      socket.join(roomId);
-      room.players[player.id] = {
-        ...player,
-        socketId: socket.id,
-      };
-
-      log(`Player "${player.name}" (${player.id}) joined room "${room.name}" (${roomId}).`);
-      socket.to(roomId).emit('playerJoinedRoom', player);
-    }
-
-    callback(room);
+    const { roomId } = payload;
+    joinRoom(playerSocket, roomId, callback);
   });
 
   playerSocket.on('leaveRoom', (payload: JoinLeaveRoomPayload, callback: Function) => {
