@@ -31,13 +31,3 @@ export type Room = {
 export type Rooms = {
   [id: string]: Room;
 };
-
-export type CreateRoomPayload = {
-  player: Player;
-  roomName: string;
-};
-
-export type JoinLeaveRoomPayload = {
-  player: Player;
-  roomId: string;
-};

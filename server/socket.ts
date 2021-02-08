@@ -7,8 +7,6 @@ import {
   Player,
   Room,
   Rooms,
-  CreateRoomPayload,
-  JoinLeaveRoomPayload,
 } from './types';
 
 const rooms: Rooms = {};
@@ -99,21 +97,18 @@ function joinRoom(socket: PlayerSocket, roomId: string, callback?: Function): vo
   }
 }
 
-function handlePlayerSocketEvents(socket: Socket, _player: Player): void {
-  const playerSocket: PlayerSocket = Object.assign(socket, { player: _player });
+function handlePlayerSocketEvents(socket: Socket, player: Player): void {
+  const playerSocket: PlayerSocket = Object.assign(socket, { player });
 
-  playerSocket.on('createRoom', (payload: CreateRoomPayload, callback: Function) => {
-    const { roomName } = payload;
+  socket.on('createRoom', (roomName: string, callback?: Function) => {
     createRoom(playerSocket, roomName, callback);
   });
 
-  playerSocket.on('joinRoom', (payload: JoinLeaveRoomPayload, callback: Function) => {
-    const { roomId } = payload;
+  socket.on('joinRoom', (roomId: string, callback?: Function) => {
     joinRoom(playerSocket, roomId, callback);
   });
 
-  playerSocket.on('leaveRoom', (payload: JoinLeaveRoomPayload, callback: Function) => {
-    const { roomId } = payload;
+  socket.on('leaveRoom', (roomId: string, callback?: Function) => {
     leaveRoom(playerSocket, roomId, callback);
   });
 }

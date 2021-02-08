@@ -43,10 +43,7 @@ export default Vue.extend({
     ]),
   },
   created() {
-    this.$socket.client.emit('joinRoom', {
-      player: this.player,
-      roomId: this.roomId,
-    }, (room: Room) => {
+    this.$socket.client.emit('joinRoom', this.roomId, (room: Room) => {
       if (room) {
         this.SET_ROOM(room);
       } else {
@@ -57,10 +54,7 @@ export default Vue.extend({
     });
   },
   beforeRouteLeave(to: Route, from: Route, next: Function): void {
-    this.$socket.client.emit('leaveRoom', {
-      player: this.player,
-      roomId: this.roomId,
-    }, (room: Room) => {
+    this.$socket.client.emit('leaveRoom', this.roomId, (room: Room) => {
       console.log(room);
     });
 
