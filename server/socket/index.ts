@@ -1,7 +1,7 @@
 import { Server as SocketServer, Socket } from 'socket.io';
 import { Server as HTTPServer } from 'http';
 import { v4 as generateId } from 'uuid';
-import { log } from './utils';
+import { log } from '../utils';
 import {
   PlayerSocket,
   Player,
