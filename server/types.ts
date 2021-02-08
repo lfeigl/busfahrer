@@ -1,8 +1,13 @@
 import { Arguments } from 'yargs-parser';
+import { Socket } from 'socket.io';
 
 export type Argv = Arguments & {
   port?: number;
   log?: boolean;
+};
+
+export type PlayerSocket = Socket & {
+  player: Player;
 };
 
 export type Player = {

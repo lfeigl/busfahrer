@@ -3,6 +3,8 @@ import { Server as HTTPServer } from 'http';
 import { v4 as generateId } from 'uuid';
 import { log } from './utils';
 import {
+  PlayerSocket,
+  Player,
   Room,
   Rooms,
   CreateRoomPayload,
@@ -22,8 +24,8 @@ function cleanRooms(): void {
   });
 }
 
-function leaveRoom(socket: Socket, payload: JoinLeaveRoomPayload, callback?: Function): void {
-  const { player, roomId } = payload;
+function leaveRoom(socket: PlayerSocket, roomId: string, callback?: Function): void {
+  const { player } = socket;
   const room = rooms[roomId];
 
   if (room) {
@@ -46,21 +48,20 @@ function leaveRoom(socket: Socket, payload: JoinLeaveRoomPayload, callback?: Fun
   }
 }
 
-function leaveJoinedRooms(socket: Socket, payload: JoinLeaveRoomPayload): void {
-  const { player } = payload;
+function leaveJoinedRooms(socket: PlayerSocket): void {
+  const { player } = socket;
 
   Object.keys(rooms).forEach((roomId: string) => {
-    if (Object.keys(rooms[roomId].players).includes(payload.player.id)) {
-      leaveRoom(socket, {
-        player,
-        roomId,
-      });
+    if (Object.keys(rooms[roomId].players).includes(player.id)) {
+      leaveRoom(socket, roomId);
     }
   });
 }
 
-function handleSocketEvents(socket: Socket): void {
-  socket.on('createRoom', (payload: CreateRoomPayload, callback: Function) => {
+function handlePlayerSocketEvents(socket: Socket, _player: Player): void {
+  const playerSocket: PlayerSocket = Object.assign(socket, { player: _player });
+
+  playerSocket.on('createRoom', (payload: CreateRoomPayload, callback: Function) => {
     const { player, roomName } = payload;
     const room: Room = {
       id: generateId(),
@@ -76,11 +77,11 @@ function handleSocketEvents(socket: Socket): void {
     callback(room);
   });
 
-  socket.on('joinRoom', (payload: JoinLeaveRoomPayload, callback: Function) => {
+  playerSocket.on('joinRoom', (payload: JoinLeaveRoomPayload, callback: Function) => {
     const { player, roomId } = payload;
     const room = rooms[roomId];
 
-    leaveJoinedRooms(socket, payload);
+    leaveJoinedRooms(playerSocket);
 
     if (room && room.isOpen) {
       socket.join(roomId);
@@ -96,8 +97,9 @@ function handleSocketEvents(socket: Socket): void {
     callback(room);
   });
 
-  socket.on('leaveRoom', (payload: JoinLeaveRoomPayload, callback: Function) => {
-    leaveRoom(socket, payload, callback);
+  playerSocket.on('leaveRoom', (payload: JoinLeaveRoomPayload, callback: Function) => {
+    const { roomId } = payload;
+    leaveRoom(playerSocket, roomId, callback);
   });
 }
 
@@ -106,6 +108,9 @@ export default function attachSocketServer(server: HTTPServer): void {
   log('Socket server attached.');
 
   io.on('connection', (socket: Socket) => {
-    handleSocketEvents(socket);
+    socket.on('setPlayer', (player: Player) => {
+      log(`Set player "${player.name}" (${player.id}).`);
+      handlePlayerSocketEvents(socket, player);
+    });
   });
 }
