@@ -71,3 +71,7 @@ export function joinRoom(socket: PlayerSocket, roomId: string, callback?: Functi
     callback(room);
   }
 }
+
+export function disconnect(socket: PlayerSocket): void {
+  socketUtils.leaveJoinedRooms(socket, leaveRoom);
+}

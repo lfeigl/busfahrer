@@ -21,6 +21,12 @@ function handlePlayerSocketEvents(socket: Socket, player: Player): void {
   socket.on('leaveRoom', (roomId: string, callback?: Function) => {
     events.leaveRoom(playerSocket, roomId, callback);
   });
+
+  socket.on('disconnect', () => {
+    if (playerSocket.player) {
+      events.disconnect(playerSocket);
+    }
+  });
 }
 
 export default function attachSocketServer(server: HTTPServer): void {
