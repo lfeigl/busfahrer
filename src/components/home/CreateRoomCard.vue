@@ -49,7 +49,7 @@ export default Vue.extend({
   methods: {
     isEmptyString,
     createRoom(): void {
-      this.$socket.client.emit('createRoom', this.roomName, (room: Room) => {
+      this.$socket.client.emit('createRoom', this.roomName.trim(), (room: Room) => {
         this.$router.push({
           name: 'Join',
           params: {

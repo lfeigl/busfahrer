@@ -72,8 +72,7 @@ export default Vue.extend({
       'SET_ACTIVE_DIALOG',
     ]),
     submitPlayerName(): void {
-      const name = this.playerName.trim();
-      this.SET_PLAYER_NAME(name);
+      this.SET_PLAYER_NAME(this.playerName.trim());
       this.playerName = '';
       this.SET_ACTIVE_DIALOG({
         dialogName: 'welcome',
