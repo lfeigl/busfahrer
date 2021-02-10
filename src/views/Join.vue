@@ -60,12 +60,5 @@ export default Vue.extend({
 
     next();
   },
-  sockets: {
-    ownerLeftRoom(): void {
-      this.$router.push({
-        name: 'Home',
-      });
-    },
-  },
 });
 </script>

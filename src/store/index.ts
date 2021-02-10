@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import createPersistedState from 'vuex-persistedstate';
+import router from '@/router';
 import initialState from '@/store/initial-state';
 import {
   StoreState,
@@ -45,8 +46,16 @@ export default new Vuex.Store({
     socketPlayerLeftRoom(context: StoreActionContext, player: Player): void {
       context.commit('REMOVE_PLAYER', player);
     },
-    socketOwnerLeftRoom(context: StoreActionContext): void {
+    async socketOwnerLeftRoom(context: StoreActionContext): Promise<void> {
+      await router.push({
+        name: 'Home',
+      });
+
       context.commit('SET_ROOM', initialState.room);
+      context.commit('SET_ACTIVE_DIALOG', {
+        dialogName: 'roomRemoved',
+        isActive: true,
+      });
     },
   },
   plugins: [

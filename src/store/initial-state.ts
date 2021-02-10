@@ -11,6 +11,7 @@ const initialState: StoreState = {
   activeDialogs: {
     welcome: false,
     removeRoom: false,
+    roomRemoved: false,
   },
   player: {
     id: '',

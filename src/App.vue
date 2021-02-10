@@ -4,6 +4,7 @@
 
     <v-main>
       <WelcomeDialog/>
+      <RoomRemovedDialog/>
       <router-view v-if="playerName"/>
     </v-main>
 
@@ -15,15 +16,17 @@
 import Vue from 'vue';
 import vuex from 'vuex';
 import AppBar from '@/components/common/AppBar.vue';
-import WelcomeDialog from '@/components/common/WelcomeDialog.vue';
 import Footer from '@/components/common/Footer.vue';
+import WelcomeDialog from '@/components/common/WelcomeDialog.vue';
+import RoomRemovedDialog from '@/components/common/RoomRemovedDialog.vue';
 
 export default Vue.extend({
   name: 'App',
   components: {
     AppBar,
-    WelcomeDialog,
     Footer,
+    WelcomeDialog,
+    RoomRemovedDialog,
   },
   computed: {
     ...vuex.mapState([
