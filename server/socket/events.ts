@@ -20,7 +20,7 @@ export function leaveRoom(socket: PlayerSocket, roomId: string, callback?: Funct
       delete rooms[roomId];
       log(`Player "${player.name}" (${player.id}) was owner of room`,
         `"${room.name}" (${roomId}). Server removed room.`);
-      socket.to(roomId).emit('ownerLeftRoom');
+      socket.to(roomId).emit('roomRemoved');
     } else {
       socket.to(roomId).emit('playerLeftRoom', player);
     }

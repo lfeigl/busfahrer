@@ -46,7 +46,7 @@ export default new Vuex.Store({
     socketPlayerLeftRoom(context: StoreActionContext, player: Player): void {
       context.commit('REMOVE_PLAYER', player);
     },
-    async socketOwnerLeftRoom(context: StoreActionContext): Promise<void> {
+    async socketRoomRemoved(context: StoreActionContext): Promise<void> {
       await router.push({
         name: 'Home',
       });
