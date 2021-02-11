@@ -11,6 +11,7 @@ npm install
 ### Development
 
 #### Compiles and hot-reloads the client in-memory for development
+*Note: The backend will **not** be available.*
 ```
 npm run serve
 ```
@@ -75,3 +76,22 @@ Argument | Type | Description | Default value | Example usage
 
 - *Production: `npm start`*
 - *Development: `npm run watch-server`*
+
+
+## Socket events
+
+### client to server
+Event | Description | Parameters
+--- | --- | ---
+`setPlayer` | Set the player ID and name **(required as first event)**. | `player: Player`
+`createRoom` | Create a room with a name. | `roomName: string, callback?: (room: Room) => void`
+`joinRoom` | Join a room by its ID. | `roomId: string, callback?: (room: Room) => void`
+`leaveRoom` | Leave a room by its ID. | `roomId: string, callback?: (room: Room) => void`
+`disconnect` | Client disconnected. | ---
+
+### server to client
+Event | Description | Parameters
+--- | --- | ---
+`playerJoinedRoom` | A player joined the room. | `player: Player`
+`playerLeftRoom` | A player left the room. | `player: Player`
+`roomRemoved` | The room was removed. | ---
