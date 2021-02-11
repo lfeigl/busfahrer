@@ -4,21 +4,22 @@ import { log } from '../utils';
 import * as events from './events';
 import {
   PlayerSocket,
+  RoomCallback,
   Player,
 } from './types';
 
 function handlePlayerSocketEvents(socket: Socket, player: Player): void {
   const playerSocket: PlayerSocket = Object.assign(socket, { player });
 
-  socket.on('createRoom', (roomName: string, callback?: Function) => {
+  socket.on('createRoom', (roomName: string, callback?: RoomCallback) => {
     events.createRoom(playerSocket, roomName, callback);
   });
 
-  socket.on('joinRoom', (roomId: string, callback?: Function) => {
+  socket.on('joinRoom', (roomId: string, callback?: RoomCallback) => {
     events.joinRoom(playerSocket, roomId, callback);
   });
 
-  socket.on('leaveRoom', (roomId: string, callback?: Function) => {
+  socket.on('leaveRoom', (roomId: string, callback?: RoomCallback) => {
     events.leaveRoom(playerSocket, roomId, callback);
   });
 

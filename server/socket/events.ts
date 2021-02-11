@@ -4,10 +4,11 @@ import rooms from './rooms';
 import * as socketUtils from './utils';
 import {
   PlayerSocket,
+  RoomCallback,
   Room,
 } from './types';
 
-export function leaveRoom(socket: PlayerSocket, roomId: string, callback?: Function): void {
+export function leaveRoom(socket: PlayerSocket, roomId: string, callback?: RoomCallback): void {
   const { player } = socket;
   const room = rooms[roomId];
 
@@ -31,7 +32,7 @@ export function leaveRoom(socket: PlayerSocket, roomId: string, callback?: Funct
   }
 }
 
-export function createRoom(socket: PlayerSocket, roomName: string, callback?: Function): void {
+export function createRoom(socket: PlayerSocket, roomName: string, callback?: RoomCallback): void {
   const { player } = socket;
   const room: Room = {
     id: generateId(),
@@ -50,7 +51,7 @@ export function createRoom(socket: PlayerSocket, roomName: string, callback?: Fu
   }
 }
 
-export function joinRoom(socket: PlayerSocket, roomId: string, callback?: Function): void {
+export function joinRoom(socket: PlayerSocket, roomId: string, callback?: RoomCallback): void {
   const { player } = socket;
   const room = rooms[roomId];
 
