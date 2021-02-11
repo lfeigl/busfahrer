@@ -4,15 +4,15 @@
       <v-col cols="6">
         <v-row>
           <v-col cols="12">
-            <JoinRoomCard/>
+            <JoinRoomCard />
           </v-col>
           <v-col cols="12">
-            <CreateRoomCard/>
+            <CreateRoomCard />
           </v-col>
         </v-row>
       </v-col>
       <v-col cols="6">
-        <PlayerCard/>
+        <PlayerCard />
       </v-col>
     </v-row>
   </v-container>

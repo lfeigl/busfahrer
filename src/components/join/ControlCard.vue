@@ -18,17 +18,17 @@
         Aussteigen
       </v-btn>
 
-      <v-spacer/>
+      <v-spacer />
 
       <v-btn
+        v-clipboard="joinLink"
         large
         text
-        v-clipboard="joinLink"
       >
         Link kopieren
       </v-btn>
 
-      <v-spacer/>
+      <v-spacer />
 
       <v-btn
         x-large
@@ -41,7 +41,7 @@
       </v-btn>
     </v-card-actions>
 
-    <RemoveRoomDialog/>
+    <RemoveRoomDialog />
   </v-card>
 </template>
 

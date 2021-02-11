@@ -13,7 +13,7 @@
       Busfahrer
     </v-app-bar-title>
 
-    <v-spacer/>
+    <v-spacer />
 
     <v-btn
       icon
@@ -44,6 +44,9 @@ export default Vue.extend({
       'theme',
     ]),
   },
+  created() {
+    this.$vuetify.theme.dark = this.theme !== 'light';
+  },
   methods: {
     ...vuex.mapMutations([
       'SET_THEME',
@@ -53,9 +56,6 @@ export default Vue.extend({
       const theme = this.$vuetify.theme.dark ? 'dark' : 'light';
       this.SET_THEME(theme);
     },
-  },
-  created() {
-    this.$vuetify.theme.dark = this.theme !== 'light';
   },
 });
 </script>

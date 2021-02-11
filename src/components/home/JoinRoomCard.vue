@@ -6,7 +6,7 @@
 
     <v-card-text>
       Lass dir einen Link zusenden, um in einen Bus einzusteigen!
-      <br/>
+      <br>
       Beispiel: <code>{{ exampleJoinLink }}</code>
     </v-card-text>
   </v-card>

@@ -1,14 +1,14 @@
 <template>
   <v-app>
-    <AppBar v-if="playerName"/>
+    <AppBar v-if="playerName" />
 
     <v-main>
-      <WelcomeDialog/>
-      <RoomRemovedDialog/>
-      <router-view v-if="playerName"/>
+      <WelcomeDialog />
+      <RoomRemovedDialog />
+      <router-view v-if="playerName" />
     </v-main>
 
-    <Footer v-if="playerName"/>
+    <Footer v-if="playerName" />
   </v-app>
 </template>
 

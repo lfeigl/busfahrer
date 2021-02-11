@@ -10,7 +10,9 @@
           :href="busfahrerApp.homepage"
           target="_blank"
         >
-          <v-icon left>mdi-code-tags</v-icon>
+          <v-icon left>
+            mdi-code-tags
+          </v-icon>
           Contribute
         </v-btn>
       </v-col>
@@ -34,7 +36,9 @@
           :href="aidPage"
           target="_blank"
         >
-          <v-icon left>mdi-lifebuoy</v-icon>
+          <v-icon left>
+            mdi-lifebuoy
+          </v-icon>
           Alkohol? Kenn dein Limit.
         </v-btn>
       </v-col>
@@ -48,15 +52,15 @@ import vuex from 'vuex';
 
 export default Vue.extend({
   name: 'Footer',
-  computed: {
-    ...vuex.mapState([
-      'busfahrerApp',
-    ]),
-  },
   data() {
     return {
       aidPage: 'https://www.kenn-dein-limit.de',
     };
+  },
+  computed: {
+    ...vuex.mapState([
+      'busfahrerApp',
+    ]),
   },
 });
 </script>

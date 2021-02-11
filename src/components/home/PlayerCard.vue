@@ -3,8 +3,8 @@
     <v-card-title class="headline">
       <v-container fluid>
         <v-row
-          dense
           v-if="isEditingPlayerName"
+          dense
         >
           <v-text-field
             v-model="playerName"
@@ -31,12 +31,12 @@
         </v-row>
 
         <v-row
-          dense
           v-else
+          dense
         >
           <span>{{ player.name || '...' }}</span>
 
-          <v-spacer/>
+          <v-spacer />
 
           <v-btn
             icon
@@ -72,13 +72,18 @@
               >
                 <v-list-item>
                   <v-list-item-content>
-                    <v-list-item-title class="headline">{{ stat.value }}</v-list-item-title>
-                    <v-list-item-subtitle class="subtitle-1">{{ stat.title }}</v-list-item-subtitle>
+                    <v-list-item-title class="headline">
+                      {{ stat.value }}
+                    </v-list-item-title>
+
+                    <v-list-item-subtitle class="subtitle-1">
+                      {{ stat.title }}
+                    </v-list-item-subtitle>
                   </v-list-item-content>
                 </v-list-item>
               </v-col>
             </v-row>
-            <v-divider/>
+            <v-divider />
           </v-col>
         </v-row>
       </v-list>

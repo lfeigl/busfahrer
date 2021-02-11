@@ -5,8 +5,13 @@
     width="unset"
   >
     <v-card>
-      <v-card-title class="headline">Willkommen zu Busfahrer!</v-card-title>
-      <v-card-subtitle class="subtitle-1">Bitte einsteigen!</v-card-subtitle>
+      <v-card-title class="headline">
+        Willkommen zu Busfahrer!
+      </v-card-title>
+
+      <v-card-subtitle class="subtitle-1">
+        Bitte einsteigen!
+      </v-card-subtitle>
 
       <v-card-text>
         <v-text-field
@@ -33,7 +38,7 @@
       </v-card-text>
 
       <v-card-actions>
-        <v-spacer/>
+        <v-spacer />
         <v-btn
           color="primary"
           text

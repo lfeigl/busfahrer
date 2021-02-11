@@ -2,11 +2,11 @@
   <v-container fluid>
     <v-row>
       <v-col cols="8">
-        <ControlCard/>
+        <ControlCard />
       </v-col>
 
       <v-col cols="4">
-        <PlayersCard/>
+        <PlayersCard />
       </v-col>
     </v-row>
   </v-container>
@@ -37,11 +37,6 @@ export default Vue.extend({
       return this.$route.params.roomId;
     },
   },
-  methods: {
-    ...vuex.mapMutations([
-      'SET_ROOM',
-    ]),
-  },
   created() {
     this.$socket.client.emit('joinRoom', this.roomId, (room: Room) => {
       if (room) {
@@ -52,6 +47,11 @@ export default Vue.extend({
         });
       }
     });
+  },
+  methods: {
+    ...vuex.mapMutations([
+      'SET_ROOM',
+    ]),
   },
   beforeRouteLeave(to: Route, from: Route, next: Function): void {
     this.$socket.client.emit('leaveRoom', this.roomId, (room: Room) => {

@@ -22,7 +22,7 @@
           Sitzenbleiben
         </v-btn>
 
-        <v-spacer/>
+        <v-spacer />
 
         <v-btn
           color="error"

@@ -12,14 +12,14 @@
         >
           <v-list-item-icon>
             <v-icon
-              :color="playerIsMe(coPlayer.id) ? 'primary': 'warning'"
               v-if="room.owner.id === coPlayer.id"
+              :color="playerIsMe(coPlayer.id) ? 'primary': 'warning'"
             >
               mdi-account-star
             </v-icon>
             <v-icon
-              :color="playerIsMe(coPlayer.id) ? 'primary': ''"
               v-else
+              :color="playerIsMe(coPlayer.id) ? 'primary': ''"
             >
               mdi-account
             </v-icon>
