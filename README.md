@@ -95,3 +95,7 @@ Event | Description | Parameters
 `playerJoinedRoom` | A player joined the room. | `player: Player`
 `playerLeftRoom` | A player left the room. | `player: Player`
 `roomRemoved` | The room was removed. | ---
+
+
+## Sources
+- [SVG playing cards by Adrian Kennard (RevK®)](https://www.me.uk/cards)
