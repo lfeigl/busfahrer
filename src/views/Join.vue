@@ -6,7 +6,7 @@
       </v-col>
 
       <v-col cols="4">
-        <PlayersCard />
+        <CoPlayersCard />
       </v-col>
     </v-row>
   </v-container>
@@ -17,7 +17,7 @@ import Vue from 'vue';
 import vuex from 'vuex';
 import { Route } from 'vue-router';
 import ControlCard from '@/components/join/ControlCard.vue';
-import PlayersCard from '@/components/join/PlayersCard.vue';
+import CoPlayersCard from '@/components/join/CoPlayersCard.vue';
 import {
   Room,
 } from '@/types';
@@ -26,7 +26,7 @@ export default Vue.extend({
   name: 'Join',
   components: {
     ControlCard,
-    PlayersCard,
+    CoPlayersCard,
   },
   computed: {
     ...vuex.mapState([
