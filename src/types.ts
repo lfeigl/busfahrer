@@ -66,3 +66,9 @@ export type Room = {
     [playerId: string]: Player;
   };
 };
+
+export type PlayingCard = {
+  name: string;
+  value: number;
+  fileName: string;
+}
