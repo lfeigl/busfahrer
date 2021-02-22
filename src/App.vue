@@ -1,6 +1,9 @@
 <template>
   <v-app>
-    <AppBar v-if="playerName" />
+    <AppBar
+      v-if="playerName"
+      id="app-bar"
+    />
 
     <v-main>
       <WelcomeDialog />
@@ -8,7 +11,10 @@
       <router-view v-if="playerName" />
     </v-main>
 
-    <Footer v-if="playerName" />
+    <Footer
+      v-if="playerName"
+      id="footer"
+    />
   </v-app>
 </template>
 
