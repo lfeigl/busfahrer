@@ -1,6 +1,6 @@
 <template>
   <v-img
-    class="ma-1"
+    class="ma-1 elevation-4"
     contain
     :src="require(`@/assets/cards/suits/${suit}/${playingCard.fileName}`)"
     :max-width="maxWidth"
