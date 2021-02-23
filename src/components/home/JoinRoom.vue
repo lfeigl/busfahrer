@@ -16,7 +16,7 @@
 import Vue from 'vue';
 
 export default Vue.extend({
-  name: 'JoinRoomCard',
+  name: 'JoinRoom',
   computed: {
     exampleJoinLink(): string {
       return window.location.origin + this.$router.resolve({

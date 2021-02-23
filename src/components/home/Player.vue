@@ -102,7 +102,7 @@ import {
 } from '@/types';
 
 export default Vue.extend({
-  name: 'PlayerCard',
+  name: 'Player',
   data() {
     return {
       isEditingPlayerName: false,

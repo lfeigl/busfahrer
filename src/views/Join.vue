@@ -2,11 +2,11 @@
   <v-container fluid>
     <v-row>
       <v-col cols="8">
-        <ControlCard />
+        <Control />
       </v-col>
 
       <v-col cols="4">
-        <CoPlayersCard />
+        <CoPlayers />
       </v-col>
     </v-row>
   </v-container>
@@ -16,8 +16,8 @@
 import Vue from 'vue';
 import vuex from 'vuex';
 import { Route } from 'vue-router';
-import ControlCard from '@/components/join/ControlCard.vue';
-import CoPlayersCard from '@/components/common/CoPlayersCard.vue';
+import Control from '@/components/join/Control.vue';
+import CoPlayers from '@/components/common/CoPlayers.vue';
 import {
   Room,
 } from '@/types';
@@ -25,8 +25,8 @@ import {
 export default Vue.extend({
   name: 'Join',
   components: {
-    ControlCard,
-    CoPlayersCard,
+    Control,
+    CoPlayers,
   },
   computed: {
     ...vuex.mapState([

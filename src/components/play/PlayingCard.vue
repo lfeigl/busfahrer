@@ -12,7 +12,7 @@ import Vue from 'vue';
 import { playingCards } from '@/utils';
 
 export default Vue.extend({
-  name: 'PlayingCardWrapper',
+  name: 'PlayingCard',
   props: {
     name: {
       type: String,

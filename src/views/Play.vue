@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-row>
       <v-col cols="2">
-        <PlayersCardsCard />
+        <PlayersCards />
       </v-col>
 
       <v-col cols="6">
@@ -10,7 +10,7 @@
       </v-col>
 
       <v-col cols="4">
-        <CoPlayersCard />
+        <CoPlayers />
       </v-col>
     </v-row>
   </v-container>
@@ -18,17 +18,17 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import PlayersCardsCard from '@/components/play/PlayersCardsCard.vue';
+import PlayersCards from '@/components/play/PlayersCards.vue';
 import Fir from '@/components/play/Fir.vue';
-import CoPlayersCard from '@/components/common/CoPlayersCard.vue';
+import CoPlayers from '@/components/common/CoPlayers.vue';
 import EventListenerResize from '@/mixins/event-listener-resize';
 
 export default Vue.extend({
   name: 'Play',
   components: {
-    PlayersCardsCard,
+    PlayersCards,
     Fir,
-    CoPlayersCard,
+    CoPlayers,
   },
   mixins: [
     EventListenerResize,

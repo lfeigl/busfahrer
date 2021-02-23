@@ -35,7 +35,7 @@ import { Room } from '@/types';
 import { isEmptyString } from '@/utils';
 
 export default Vue.extend({
-  name: 'CreateRoomCard',
+  name: 'CreateRoom',
   data() {
     return {
       roomName: '',

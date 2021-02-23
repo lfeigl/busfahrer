@@ -51,7 +51,7 @@ import vuex from 'vuex';
 import RemoveRoomDialog from '@/components/join/RemoveRoomDialog.vue';
 
 export default Vue.extend({
-  name: 'ControlCard',
+  name: 'Control',
   components: {
     RemoveRoomDialog,
   },

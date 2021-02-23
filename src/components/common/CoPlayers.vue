@@ -41,7 +41,7 @@ import Vue from 'vue';
 import vuex from 'vuex';
 
 export default Vue.extend({
-  name: 'CoPlayersCard',
+  name: 'CoPlayers',
   computed: {
     ...vuex.mapState([
       'player',
