@@ -12,7 +12,7 @@
         </v-row>
       </v-col>
       <v-col cols="6">
-        <Player />
+        <PlayerStats />
       </v-col>
     </v-row>
   </v-container>
@@ -22,14 +22,14 @@
 import Vue from 'vue';
 import JoinRoom from '@/components/home/JoinRoom.vue';
 import CreateRoom from '@/components/home/CreateRoom.vue';
-import Player from '@/components/home/Player.vue';
+import PlayerStats from '@/components/home/PlayerStats.vue';
 
 export default Vue.extend({
   name: 'Home',
   components: {
     JoinRoom,
     CreateRoom,
-    Player,
+    PlayerStats,
   },
 });
 </script>
