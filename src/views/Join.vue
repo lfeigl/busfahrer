@@ -17,7 +17,7 @@ import Vue from 'vue';
 import vuex from 'vuex';
 import { Route } from 'vue-router';
 import ControlCard from '@/components/join/ControlCard.vue';
-import CoPlayersCard from '@/components/join/CoPlayersCard.vue';
+import CoPlayersCard from '@/components/common/CoPlayersCard.vue';
 import {
   Room,
 } from '@/types';

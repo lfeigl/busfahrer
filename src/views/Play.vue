@@ -20,7 +20,7 @@
 import Vue from 'vue';
 import PlayersCardsCard from '@/components/play/PlayersCardsCard.vue';
 import Fir from '@/components/play/Fir.vue';
-import CoPlayersCard from '@/components/join/CoPlayersCard.vue';
+import CoPlayersCard from '@/components/common/CoPlayersCard.vue';
 import EventListenerResize from '@/mixins/event-listener-resize';
 
 export default Vue.extend({
