@@ -2,7 +2,7 @@
   <v-img
     class="ma-1 elevation-4"
     contain
-    :src="require(`@/assets/cards/suits/${suit}/${playingCard.fileName}`)"
+    :src="require(`@/assets/playing-cards/${suit}/${playingCard.fileName}`)"
     :max-width="maxWidth"
   />
 </template>
@@ -16,15 +16,15 @@ export default Vue.extend({
   props: {
     name: {
       type: String,
-      required: true,
+      default: 'back1',
     },
     suit: {
       type: String,
-      required: true,
+      default: 'back',
     },
     maxWidth: {
       type: Number,
-      required: true,
+      default: null,
     },
   },
   data() {
