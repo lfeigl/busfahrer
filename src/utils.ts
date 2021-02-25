@@ -5,6 +5,16 @@ export function isEmptyString(string: string): boolean {
 }
 
 export const playingCards: { [name: string]: PlayingCard } = {
+  back1: {
+    name: 'back1',
+    value: 0,
+    fileName: '01.svg',
+  },
+  back2: {
+    name: 'back2',
+    value: 0,
+    fileName: '02.svg',
+  },
   ace: {
     name: 'ace',
     value: 100,
