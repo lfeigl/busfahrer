@@ -26,12 +26,8 @@
     "build": "npm run build-client && npm run build-server",
     "build-client": "vue-cli-service build",
     "build-server": "tsc --project tsconfig-server.json",
-    "start": "node build"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint"
-    }
+    "start": "node build",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@mdi/font": "^3.9.97",
@@ -73,7 +69,7 @@
     "eslint": "^6.8.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-vue": "^6.2.2",
-    "husky": "^4.3.8",
+    "husky": "^5.1.3",
     "sass": "^1.32.8",
     "sass-loader": "^8.0.2",
     "ts-node-dev": "^1.1.6",
