@@ -1,11 +1,5 @@
 import { Socket } from 'socket.io';
 
-export type PlayerSocket = Socket & {
-  player: Player;
-};
-
-export type RoomCallback = (room: Room | null) => void;
-
 export type Player = {
   id: string;
   name: string;
@@ -14,6 +8,10 @@ export type Player = {
 
 export type Players = {
   [id: string]: Player;
+};
+
+export type PlayerSocket = Socket & {
+  player: Player;
 };
 
 export type Room = {
@@ -27,3 +25,5 @@ export type Room = {
 export type Rooms = {
   [id: string]: Room;
 };
+
+export type RoomCallback = (room: Room | null) => void;

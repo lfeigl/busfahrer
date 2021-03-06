@@ -35,11 +35,6 @@ export default Vue.extend({
   mixins: [
     EventListenerResize,
   ],
-  computed: {
-    ...vuex.mapState([
-      'room',
-    ]),
-  },
   beforeRouteEnter(to: Route, from: Route, next: NavigationGuardNext) {
     if (from.name === 'Join') {
       next();
@@ -48,6 +43,11 @@ export default Vue.extend({
         name: 'Home',
       });
     }
+  },
+  computed: {
+    ...vuex.mapState([
+      'room',
+    ]),
   },
 });
 </script>

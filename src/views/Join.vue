@@ -28,6 +28,17 @@ export default Vue.extend({
     Control,
     CoPlayers,
   },
+  beforeRouteLeave(to: Route, from: Route, next: NavigationGuardNext) {
+    if (to.name !== 'Play') {
+      this.$socket.client.emit('leaveRoom', this.roomId, (room: Room) => {
+        if (room) {
+          console.log('left room:', room);
+        }
+      });
+    }
+
+    next();
+  },
   computed: {
     ...vuex.mapState([
       'player',
@@ -52,17 +63,6 @@ export default Vue.extend({
     ...vuex.mapMutations([
       'SET_ROOM',
     ]),
-  },
-  beforeRouteLeave(to: Route, from: Route, next: NavigationGuardNext) {
-    if (to.name !== 'Play') {
-      this.$socket.client.emit('leaveRoom', this.roomId, (room: Room) => {
-        if (room) {
-          console.log('left room:', room);
-        }
-      });
-    }
-
-    next();
   },
 });
 </script>
