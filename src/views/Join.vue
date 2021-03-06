@@ -15,7 +15,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import vuex from 'vuex';
-import { Route } from 'vue-router';
+import { Route, NavigationGuardNext } from 'vue-router';
 import Control from '@/components/join/Control.vue';
 import CoPlayers from '@/components/common/CoPlayers.vue';
 import {
@@ -53,10 +53,14 @@ export default Vue.extend({
       'SET_ROOM',
     ]),
   },
-  beforeRouteLeave(to: Route, from: Route, next: Function): void {
-    this.$socket.client.emit('leaveRoom', this.roomId, (room: Room) => {
-      console.log(room);
-    });
+  beforeRouteLeave(to: Route, from: Route, next: NavigationGuardNext) {
+    if (to.name !== 'Play') {
+      this.$socket.client.emit('leaveRoom', this.roomId, (room: Room) => {
+        if (room) {
+          console.log('left room:', room);
+        }
+      });
+    }
 
     next();
   },

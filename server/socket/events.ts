@@ -12,7 +12,7 @@ export function leaveRoom(socket: PlayerSocket, roomId: string, callback?: RoomC
   const { player } = socket;
   const room = rooms[roomId];
 
-  if (room) {
+  if (room && room.players[player.id]) {
     socket.leave(roomId);
     delete room.players[player.id];
     log(`Player "${player.name}" (${player.id}) left room "${room.name}" (${roomId}).`);
@@ -25,10 +25,14 @@ export function leaveRoom(socket: PlayerSocket, roomId: string, callback?: RoomC
     } else {
       socket.to(roomId).emit('playerLeftRoom', player);
     }
+
+    if (callback) {
+      callback(room);
+    }
   }
 
   if (callback) {
-    callback(room);
+    callback(null);
   }
 }
 
@@ -66,7 +70,27 @@ export function joinRoom(socket: PlayerSocket, roomId: string, callback?: RoomCa
 
     log(`Player "${player.name}" (${player.id}) joined room "${room.name}" (${roomId}).`);
     socket.to(roomId).emit('playerJoinedRoom', player);
+
+    if (callback) {
+      callback(room);
+    }
   }
+
+  if (callback) {
+    callback(null);
+  }
+}
+
+export function startGame(socket: PlayerSocket, roomId: string, callback?: RoomCallback): void {
+  const { player } = socket;
+  const room = rooms[roomId];
+
+  if (room.owner.id === player.id) {
+    room.isOpen = false;
+  }
+
+  log(`Game in room "${room.name}" (${roomId}) started.`);
+  socket.to(roomId).emit('gameStarted', room);
 
   if (callback) {
     callback(room);

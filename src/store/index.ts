@@ -57,6 +57,11 @@ export default new Vuex.Store({
         isActive: true,
       });
     },
+    async socketGameStarted(): Promise<void> {
+      await router.push({
+        name: 'Play',
+      });
+    },
   },
   plugins: [
     createPersistedState({

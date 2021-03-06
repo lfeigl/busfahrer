@@ -81,7 +81,11 @@ export default Vue.extend({
       }
     },
     startGame(): void {
-      console.log(this.room);
+      this.$socket.client.emit('startGame', this.room.id, () => {
+        this.$router.push({
+          name: 'Play',
+        });
+      });
     },
   },
 });

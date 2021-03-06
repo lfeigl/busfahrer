@@ -23,6 +23,10 @@ function handlePlayerSocketEvents(socket: Socket, player: Player): void {
     events.leaveRoom(playerSocket, roomId, callback);
   });
 
+  socket.on('startGame', (roomId: string, callback?: RoomCallback) => {
+    events.startGame(playerSocket, roomId, callback);
+  });
+
   socket.on('disconnect', () => {
     if (playerSocket.player) {
       events.disconnect(playerSocket);

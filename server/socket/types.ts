@@ -4,7 +4,7 @@ export type PlayerSocket = Socket & {
   player: Player;
 };
 
-export type RoomCallback = (room: Room) => void;
+export type RoomCallback = (room: Room | null) => void;
 
 export type Player = {
   id: string;

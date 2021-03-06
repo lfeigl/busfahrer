@@ -18,6 +18,8 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import vuex from 'vuex';
+import { Route, NavigationGuardNext } from 'vue-router';
 import PlayerHand from '@/components/play/PlayerHand.vue';
 import Fir from '@/components/play/Fir.vue';
 import CoPlayers from '@/components/common/CoPlayers.vue';
@@ -33,5 +35,19 @@ export default Vue.extend({
   mixins: [
     EventListenerResize,
   ],
+  computed: {
+    ...vuex.mapState([
+      'room',
+    ]),
+  },
+  beforeRouteEnter(to: Route, from: Route, next: NavigationGuardNext) {
+    if (from.name === 'Join') {
+      next();
+    } else {
+      next({
+        name: 'Home',
+      });
+    }
+  },
 });
 </script>
