@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-card-title class="headline">
+    <v-card-title class="text-h5">
       In Bus der Linie "{{ room.name }}" einsteigen
     </v-card-title>
 

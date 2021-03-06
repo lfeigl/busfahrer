@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-card-title class="headline">
+    <v-card-title class="text-h5">
       <v-container fluid>
         <v-row
           v-if="isEditingPlayerName"
@@ -61,7 +61,7 @@
               align="center"
             >
               <v-col cols="1">
-                <span class="display-1">
+                <span class="text-h4">
                   {{ statGroup.icon }}
                 </span>
               </v-col>
@@ -72,11 +72,11 @@
               >
                 <v-list-item>
                   <v-list-item-content>
-                    <v-list-item-title class="headline">
+                    <v-list-item-title class="text-h5">
                       {{ stat.value }}
                     </v-list-item-title>
 
-                    <v-list-item-subtitle class="subtitle-1">
+                    <v-list-item-subtitle class="text-subtitle-1">
                       {{ stat.title }}
                     </v-list-item-subtitle>
                   </v-list-item-content>

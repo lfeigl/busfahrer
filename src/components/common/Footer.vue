@@ -21,7 +21,7 @@
         cols="4"
         class="text-center"
       >
-        <span class="font-weight-light body-2">
+        <span class="text-body-2 font-weight-light">
           <strong>{{ busfahrerApp.name }} v{{ busfahrerApp.version }}</strong>
           by {{ busfahrerApp.author }}
         </span>

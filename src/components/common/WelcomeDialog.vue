@@ -5,11 +5,11 @@
     width="unset"
   >
     <v-card>
-      <v-card-title class="headline">
+      <v-card-title class="text-h4">
         Willkommen zu Busfahrer!
       </v-card-title>
 
-      <v-card-subtitle class="subtitle-1">
+      <v-card-subtitle class="text-h6">
         Bitte einsteigen!
       </v-card-subtitle>
 

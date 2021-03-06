@@ -4,7 +4,7 @@
     rounded="xl"
     elevation="4"
   >
-    <v-card-title class="headline text-no-wrap justify-center">
+    <v-card-title class="text-h5 text-no-wrap justify-center">
       Meine Karten
     </v-card-title>
 

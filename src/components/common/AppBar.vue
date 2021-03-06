@@ -2,7 +2,7 @@
   <v-app-bar
     app
   >
-    <v-app-bar-title class="headline">
+    <v-app-bar-title class="text-h5">
       <v-btn
         icon
         large

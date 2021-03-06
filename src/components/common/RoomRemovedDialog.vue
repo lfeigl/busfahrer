@@ -5,7 +5,7 @@
     width="unset"
   >
     <v-card>
-      <v-card-title class="headline">
+      <v-card-title class="text-h5">
         Alle aussteigen!
       </v-card-title>
 
