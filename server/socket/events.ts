@@ -87,13 +87,17 @@ export function startGame(socket: PlayerSocket, roomId: string, callback?: RoomC
 
   if (room.owner.id === player.id) {
     room.isOpen = false;
+
+    log(`Game in room "${room.name}" (${roomId}) started.`);
+    socket.to(roomId).emit('gameStarted', room);
+
+    if (callback) {
+      callback(room);
+    }
   }
 
-  log(`Game in room "${room.name}" (${roomId}) started.`);
-  socket.to(roomId).emit('gameStarted', room);
-
   if (callback) {
-    callback(room);
+    callback(null);
   }
 }
 
