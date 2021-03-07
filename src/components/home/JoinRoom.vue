@@ -22,7 +22,7 @@ export default Vue.extend({
       return window.location.origin + this.$router.resolve({
         name: 'Join',
         params: {
-          roomId: 'busfahrt',
+          roomId: '123e4567-e89b-12d3-a456-426614174000',
         },
       }).href;
     },
