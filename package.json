@@ -19,7 +19,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "watch-client": "vue-cli-service build --mode development --watch",
-    "watch-server": "ts-node-dev --project tsconfig-server.json server",
+    "watch-server": "ts-node-dev --project tsconfig-server.json --clear server",
     "lint": "npm run lint-client && npm run lint-server",
     "lint-client": "vue-cli-service lint --no-fix",
     "lint-server": "eslint server/**/*",
