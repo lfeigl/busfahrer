@@ -49,6 +49,7 @@
 import Vue from 'vue';
 import vuex from 'vuex';
 import RemoveRoomDialog from '@/components/join/RemoveRoomDialog.vue';
+import { PlayingCard } from '@/types';
 
 export default Vue.extend({
   name: 'Control',
@@ -67,6 +68,7 @@ export default Vue.extend({
   methods: {
     ...vuex.mapMutations([
       'SET_ACTIVE_DIALOG',
+      'ADD_FIR_CARD',
     ]),
     leaveRoom(): void {
       if (this.room.owner.id === this.player.id && Object.keys(this.room.players).length > 1) {
@@ -81,7 +83,8 @@ export default Vue.extend({
       }
     },
     startGame(): void {
-      this.$socket.client.emit('startGame', this.room.id, () => {
+      this.$socket.client.emit('startGame', this.room.id, (firCard: PlayingCard) => {
+        this.ADD_FIR_CARD(firCard);
         this.$router.push({
           name: 'Play',
         });
