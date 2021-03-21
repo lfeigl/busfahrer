@@ -2,14 +2,14 @@
   <v-img
     class="ma-1 elevation-4"
     contain
-    :src="require(`@/assets/playing-cards/${suit}/${playingCard.fileName}`)"
+    :src="require(`@/assets/playing-cards/${suit}/${filename}`)"
     :max-width="maxWidth"
   />
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import { playingCards } from '@/utils';
+import { playingCardFilenames } from '@/utils';
 
 export default Vue.extend({
   name: 'PlayingCard',
@@ -29,7 +29,7 @@ export default Vue.extend({
   },
   data() {
     return {
-      playingCard: playingCards[this.name],
+      filename: playingCardFilenames[this.name],
     };
   },
 });
