@@ -9,6 +9,7 @@ import {
   SetActiveDialogMutationPayload,
   Room,
   Player,
+  PlayingCard,
 } from '@/types';
 
 Vue.use(Vuex);
@@ -38,6 +39,12 @@ export default new Vuex.Store({
     REMOVE_PLAYER(state: StoreState, player: Player): void {
       Vue.delete(state.room.players, player.id);
     },
+    ADD_FIR_CARD(state: StoreState, firCard: PlayingCard): void {
+      state.room.firCards.push(firCard);
+    },
+    SET_HAND(state: StoreState, hand: PlayingCard[]): void {
+      state.hand = hand;
+    },
   },
   actions: {
     socketPlayerJoinedRoom(context: StoreActionContext, player: Player): void {
@@ -45,6 +52,12 @@ export default new Vuex.Store({
     },
     socketPlayerLeftRoom(context: StoreActionContext, player: Player): void {
       context.commit('REMOVE_PLAYER', player);
+    },
+    socketDealtHand(context: StoreActionContext, hand: PlayingCard[]): void {
+      context.commit('SET_HAND', hand);
+    },
+    socketFlippedFirCard(context: StoreActionContext, firCard: PlayingCard): void {
+      context.commit('ADD_FIR_CARD', firCard);
     },
     async socketRoomRemoved(context: StoreActionContext): Promise<void> {
       await router.push({
