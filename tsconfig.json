@@ -36,6 +36,8 @@
     "tests/**/*.tsx"
   ],
   "exclude": [
+    "build",
+    "dist",
     "node_modules"
   ]
 }
