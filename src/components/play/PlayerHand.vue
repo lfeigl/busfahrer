@@ -10,8 +10,8 @@
 
     <v-card-text :id="containerId">
       <div class="d-flex flex-wrap justify-center">
-        <PlayingCard
-          v-for="(card, i) in playingCards"
+        <PlayingCardComponent
+          v-for="(card, i) in hand"
           :key="i"
           :name="card.name"
           :suit="card.suit"
@@ -24,13 +24,14 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import PlayingCard from '@/components/play/PlayingCard.vue';
+import vuex from 'vuex';
+import PlayingCardComponent from '@/components/play/PlayingCard.vue';
 import PlayingCardMaxWidth from '@/mixins/playing-card-max-width';
 
 export default Vue.extend({
   name: 'PlayersCards',
   components: {
-    PlayingCard,
+    PlayingCardComponent,
   },
   mixins: [
     PlayingCardMaxWidth,
@@ -40,12 +41,16 @@ export default Vue.extend({
       containerId: 'player-hand',
       // card title + bottom padding
       additionalOffset: (32 + 16 * 2) + 16,
-      playingCards: [
-        {},
-        {},
-        {},
-      ],
+      playingCardRowCount: 0,
     };
+  },
+  computed: {
+    ...vuex.mapState([
+      'hand',
+    ]),
+  },
+  created() {
+    this.playingCardRowCount = Math.ceil(this.hand.length / 3);
   },
 });
 </script>
