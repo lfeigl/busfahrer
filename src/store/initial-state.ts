@@ -73,7 +73,9 @@ const initialState: StoreState = {
       name: '',
     },
     players: {},
+    firCards: [],
   },
+  hand: [],
 };
 
 export default initialState;
