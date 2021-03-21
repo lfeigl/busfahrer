@@ -9,8 +9,8 @@ export type BusfahrerApp = {
 
 export type PlayingCard = {
   name: string;
+  suit: string;
   value: number;
-  fileName: string;
 }
 
 export type Player = {
@@ -43,6 +43,7 @@ export type Room = {
   players: {
     [playerId: string]: Player;
   };
+  firCards: PlayingCard[],
 };
 
 export type StoreState = {
@@ -64,6 +65,7 @@ export type StoreState = {
     };
   };
   room: Room;
+  hand: PlayingCard[],
 };
 
 export type SetActiveDialogMutationPayload = {
