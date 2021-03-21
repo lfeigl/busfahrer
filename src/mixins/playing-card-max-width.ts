@@ -7,7 +7,7 @@ export default Vue.extend({
       playingCardMaxWidth: 0,
       containerId: '',
       additionalOffset: 0,
-      playingCards: [],
+      playingCardRowCount: 0,
     };
   },
   created() {
@@ -30,7 +30,7 @@ export default Vue.extend({
     },
     calcPlayingCardMaxWidth(): number {
       const heightWidthRatio = 1.4;
-      const rowCount = this.playingCards.length;
+      const rowCount = this.playingCardRowCount;
       const appBar = document.getElementById('app-bar');
       const footer = document.getElementById('footer');
       const container = document.getElementById(this.containerId);
