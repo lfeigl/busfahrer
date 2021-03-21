@@ -2,10 +2,13 @@ import { v4 as generateId } from 'uuid';
 import { log } from '../utils';
 import rooms from './rooms';
 import * as socketUtils from './utils';
+import * as gameUtils from '../game/utils';
+import getFullDeck from '../game/deck';
 import {
+  Room,
   PlayerSocket,
   RoomCallback,
-  Room,
+  GameCallback,
 } from './types';
 
 export function leaveRoom(socket: PlayerSocket, roomId: string, callback?: RoomCallback): void {
@@ -44,6 +47,8 @@ export function createRoom(socket: PlayerSocket, roomName: string, callback?: Ro
     isOpen: true,
     owner: player,
     players: {},
+    deck: [],
+    firCards: [],
   };
 
   socketUtils.cleanRooms();
@@ -81,18 +86,41 @@ export function joinRoom(socket: PlayerSocket, roomId: string, callback?: RoomCa
   }
 }
 
-export function startGame(socket: PlayerSocket, roomId: string, callback?: RoomCallback): void {
+export function startGame(socket: PlayerSocket, roomId: string, callback?: GameCallback): void {
   const { player } = socket;
   const room = rooms[roomId];
 
   if (room.owner.id === player.id) {
-    room.isOpen = false;
+    const playerCount = Object.keys(room.players).length;
+    const deck = getFullDeck();
 
+    room.isOpen = false;
+    room.deck = gameUtils.shuffleDeck(deck);
+    room.firCards = room.deck.splice(0, 15);
+    room.currentFirCard = room.firCards.pop();
+
+    const dealtCards = gameUtils.dealCards(room.deck, playerCount);
+
+    Object.values(room.players).forEach((coPlayer) => {
+      if (coPlayer.socketId) {
+        const hand = dealtCards.pop();
+
+        coPlayer.hand = hand;
+
+        if (coPlayer.id === player.id) {
+          socket.emit('dealtHand', hand);
+        } else {
+          socket.to(coPlayer.socketId).emit('dealtHand', hand);
+        }
+      }
+    });
+
+    socket.to(roomId).emit('flippedFirCard', room.currentFirCard);
     log(`Game in room "${room.name}" (${roomId}) started.`);
-    socket.to(roomId).emit('gameStarted', room);
+    socket.to(roomId).emit('gameStarted');
 
     if (callback) {
-      callback(room);
+      callback(room.currentFirCard);
     }
   }
 

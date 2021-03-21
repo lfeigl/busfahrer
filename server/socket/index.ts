@@ -3,9 +3,10 @@ import { Server as HTTPServer } from 'http';
 import { log } from '../utils';
 import * as events from './events';
 import {
+  Player,
   PlayerSocket,
   RoomCallback,
-  Player,
+  GameCallback,
 } from './types';
 
 function handlePlayerSocketEvents(socket: Socket, player: Player): void {
@@ -23,7 +24,7 @@ function handlePlayerSocketEvents(socket: Socket, player: Player): void {
     events.leaveRoom(playerSocket, roomId, callback);
   });
 
-  socket.on('startGame', (roomId: string, callback?: RoomCallback) => {
+  socket.on('startGame', (roomId: string, callback?: GameCallback) => {
     events.startGame(playerSocket, roomId, callback);
   });
 
