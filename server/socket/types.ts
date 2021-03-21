@@ -1,9 +1,11 @@
 import { Socket } from 'socket.io';
+import { PlayingCard } from '../game/types';
 
 export type Player = {
   id: string;
   name: string;
   socketId?: string;
+  hand?: PlayingCard[],
 };
 
 export type Players = {
@@ -20,10 +22,15 @@ export type Room = {
   isOpen: boolean;
   owner: Player;
   players: Players;
+  deck: PlayingCard[],
+  firCards: PlayingCard[],
+  currentFirCard?: PlayingCard,
 };
 
 export type Rooms = {
   [id: string]: Room;
 };
 
-export type RoomCallback = (room: Room | null) => void;
+export type RoomCallback = (room?: Room | null) => void;
+
+export type GameCallback = (card?: PlayingCard | null) => void;
