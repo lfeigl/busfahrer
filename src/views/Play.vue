@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-row>
-      <v-col cols="2">
+      <v-col cols="3">
         <PlayerHand />
       </v-col>
 
@@ -9,7 +9,7 @@
         <Fir />
       </v-col>
 
-      <v-col cols="4">
+      <v-col cols="3">
         <CoPlayers />
       </v-col>
     </v-row>
