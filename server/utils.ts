@@ -10,6 +10,7 @@ export function writeToLogFile(...messages: string[]): void {
 }
 
 export function log(...messages: string[]): void {
+  /* eslint-disable-next-line no-console */
   console.log('[Busfahrer]', ...messages);
   if (argv.log) writeToLogFile(...messages);
 }

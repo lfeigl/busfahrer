@@ -33,7 +33,7 @@ new Vue({
 if (module.hot) {
   module.hot.addStatusHandler((status: string) => {
     if (status === 'prepare') {
-      // eslint-disable-next-line
+      /* eslint-disable-next-line no-console */
       console.clear();
     }
   });

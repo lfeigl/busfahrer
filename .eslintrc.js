@@ -12,7 +12,7 @@ module.exports = {
     ecmaVersion: 2020,
   },
   rules: {
-    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'warn',
     'no-param-reassign': ['error', { props: false }],
     '@typescript-eslint/typedef': 'error',
     '@typescript-eslint/explicit-function-return-type': 'error',
