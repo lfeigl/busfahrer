@@ -66,7 +66,6 @@ npm start
 
 
 ## Arguments
-
 Server accepts following arguments:
 
 Argument | Type | Description | Default value | Example usage
@@ -83,11 +82,12 @@ Argument | Type | Description | Default value | Example usage
 ### client to server
 Event | Description | Parameters
 --- | --- | ---
-`setPlayer` | Set the player ID and name **(required as first event)**. | `player: Player`
+`setPlayer` | Set the player ID and name. *(mandatory for the following events)* | `player: Player`
 `createRoom` | Create a room with a name. | `roomName: string, callback?: (room: Room) => void`
 `joinRoom` | Join a room by its ID. | `roomId: string, callback?: (room: Room) => void`
 `leaveRoom` | Leave a room by its ID. | `roomId: string, callback?: (room: Room) => void`
-`disconnect` | Client disconnected. | ---
+`startGame` | Start the game in a room. *(player needs to be owner of the room)* | `roomId: string, callback?: (playingCard: PlayingCard) => void`
+`disconnect` | Client disconnected. *(automatically fired by Socket.IO)* | ---
 
 ### server to client
 Event | Description | Parameters
@@ -95,7 +95,9 @@ Event | Description | Parameters
 `playerJoinedRoom` | A player joined the room. | `player: Player`
 `playerLeftRoom` | A player left the room. | `player: Player`
 `roomRemoved` | The room was removed. | ---
+`dealtHand` | The dealt hand for the player. | `hand: PlayingCard[]`
+`flippedFirCard` | The flipped fir card. | `firCard: PlayingCard`
 
 
-## Sources
-- [SVG playing cards by Adrian Kennard (RevK®)](https://www.me.uk/cards)
+## Credits
+- Free SVG playing cards by [Adrian Kennard (RevK®)](https://www.me.uk/cards)
