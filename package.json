@@ -2,13 +2,17 @@
   "name": "busfahrer",
   "version": "0.0.0",
   "private": true,
-  "description": "TBD",
+  "description": "Online multiplayer in-browser implementation of the notorious German drinking game Busfahrer.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lfeigl/busfahrer.git"
   },
   "keywords": [
-    "busfahrer"
+    "busfahrer",
+    "drinking game",
+    "online",
+    "multiplayer",
+    "in-browser"
   ],
   "author": "Luca Feigl",
   "license": "ISC",

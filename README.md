@@ -1,4 +1,5 @@
-# busfahrer
+# Busfahrer
+Online multiplayer in-browser implementation of the notorious German drinking game Busfahrer.
 
 ## Project setup
 ```
