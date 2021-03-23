@@ -11,17 +11,17 @@ npm install
 ### Development
 
 #### Compiles and hot-reloads the client in-memory for development
-*Note: The backend will **not** be available.*
+*Note: The backend will **not** be able to serve the frontend.*
 ```
 npm run serve
 ```
 
-#### Compiles and hot-reloads the client for development
+#### Compiles and hot-reloads the client on-disk for development
 ```
 npm run watch-client
 ```
 
-#### Compiles and hot-reloads the server for development
+#### Compiles and hot-reloads the server in-memory for development
 ```
 npm run watch-server
 ```
