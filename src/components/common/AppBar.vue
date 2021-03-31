@@ -8,7 +8,7 @@
         large
         to="/"
       >
-        <v-icon>mdi-bus</v-icon>
+        <v-icon>$logo</v-icon>
       </v-btn>
       Busfahrer
     </v-app-bar-title>
