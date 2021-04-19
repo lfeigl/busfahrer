@@ -67,6 +67,6 @@ export default Vue.extend({
 
 <style scoped>
 .text-center {
-  padding-top: 6px;
+  padding-top: 6px !important;
 }
 </style>
