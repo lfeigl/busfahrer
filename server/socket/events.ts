@@ -76,6 +76,10 @@ export function joinRoom(socket: PlayerSocket, roomId: string, callback?: RoomCa
     log(`Player "${player.name}" (${player.id}) joined room "${room.name}" (${roomId}).`);
     socket.to(roomId).emit('playerJoinedRoom', player);
 
+    if (Object.keys(room.players).length >= 18) {
+      room.isOpen = false;
+    }
+
     if (callback) {
       callback(room);
     }
