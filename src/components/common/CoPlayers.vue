@@ -4,6 +4,10 @@
       Mitfahrer
     </v-card-title>
 
+    <v-card-subtitle class="subtitle-1">
+      {{ playerCount }} / 18
+    </v-card-subtitle>
+
     <v-card-text>
       <v-list>
         <v-list-item
@@ -47,6 +51,9 @@ export default Vue.extend({
       'player',
       'room',
     ]),
+    playerCount(): number {
+      return Object.keys(this.room.players).length;
+    },
   },
   methods: {
     playerIsMe(playerId: string): boolean {
