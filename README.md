@@ -101,4 +101,5 @@ Event | Description | Parameters
 
 
 ## Credits
+- Custom "Busfahrer" logo by [Hamzah Qazi](https://twitter.com/qazi_hamzah) ([hqxdesigns](https://www.instagram.com/hqxdesigns) / [Souel Studios](https://www.instagram.com/souel.studios))
 - Free SVG playing cards by [Adrian Kennard (RevK®)](https://www.me.uk/cards)
