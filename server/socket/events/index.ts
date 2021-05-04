@@ -4,6 +4,7 @@ import createRoom from './create-room';
 import joinRoom from './join-room';
 import leaveRoom from './leave-room';
 import startGame from './start-game';
+import playCard from './play-card';
 
 export function disconnect(socket: PlayerSocket): void {
   socketUtils.leaveJoinedRooms(socket, leaveRoom);
@@ -14,4 +15,5 @@ export {
   joinRoom,
   leaveRoom,
   startGame,
+  playCard,
 };

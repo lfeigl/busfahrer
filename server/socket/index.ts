@@ -7,7 +7,9 @@ import {
   PlayerSocket,
   RoomCallback,
   GameCallback,
+  PlayCallback,
 } from './types';
+import { PlayingCard } from '../game/types';
 
 function handlePlayerSocketEvents(socket: Socket, player: Player): void {
   const playerSocket: PlayerSocket = Object.assign(socket, { player });
@@ -26,6 +28,10 @@ function handlePlayerSocketEvents(socket: Socket, player: Player): void {
 
   socket.on('startGame', (roomId: string, callback?: GameCallback) => {
     events.startGame(playerSocket, roomId, callback);
+  });
+
+  socket.on('playCard', (card: PlayingCard, callback?: PlayCallback) => {
+    events.playCard(playerSocket, card, callback);
   });
 
   socket.on('disconnect', () => {
