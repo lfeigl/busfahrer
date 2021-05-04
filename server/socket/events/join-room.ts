@@ -15,6 +15,7 @@ export default (socket: PlayerSocket, roomId: string, callback?: RoomCallback): 
 
   if (room && room.isOpen) {
     socket.join(roomId);
+    player.roomId = roomId;
     room.players[player.id] = {
       ...player,
       socketId: socket.id,

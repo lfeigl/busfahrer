@@ -11,7 +11,7 @@ export default (socket: PlayerSocket, roomId: string, callback?: GameCallback): 
   const { player } = socket;
   const room = rooms[roomId];
 
-  if (room.owner.id === player.id) {
+  if (room && room.owner.id === player.id) {
     const playerCount = Object.keys(room.players).length;
     const deck = getFullDeck();
 

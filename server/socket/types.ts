@@ -5,6 +5,7 @@ export type Player = {
   id: string;
   name: string;
   socketId?: string;
+  roomId?: string;
   hand?: PlayingCard[],
 };
 
@@ -28,9 +29,11 @@ export type Room = {
 };
 
 export type Rooms = {
-  [id: string]: Room;
+  [id: string]: Room | undefined;
 };
 
 export type RoomCallback = (room?: Room | null) => void;
 
 export type GameCallback = (card?: PlayingCard | null) => void;
+
+export type PlayCallback = (isValidPlay?: boolean) => void;

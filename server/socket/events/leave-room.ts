@@ -11,6 +11,7 @@ export default (socket: PlayerSocket, roomId: string, callback?: RoomCallback): 
 
   if (room && room.players[player.id]) {
     socket.leave(roomId);
+    delete player.roomId;
     delete room.players[player.id];
     log(`Player "${player.name}" (${player.id}) left room "${room.name}" (${roomId}).`);
 
