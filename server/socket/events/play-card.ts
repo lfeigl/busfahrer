@@ -1,7 +1,7 @@
 import rooms from '../rooms';
 import { PlayerSocket, PlayCallback } from '../types';
 import { PlayingCard } from '../../game/types';
-import { checkIfPlayerIsInRoom } from '../utils';
+import { validatePlay } from '../../game/utils';
 
 export default (socket: PlayerSocket, card: PlayingCard, callback?: PlayCallback): void => {
   const { player } = socket;
@@ -11,7 +11,7 @@ export default (socket: PlayerSocket, card: PlayingCard, callback?: PlayCallback
     const room = rooms[roomId];
 
     if (room) {
-      if (checkIfPlayerIsInRoom(socket)) {
+      if (validatePlay(socket, card)) {
         callback(card.value === room.currentFirCard?.value);
       }
     }

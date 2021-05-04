@@ -1,4 +1,7 @@
+import rooms from '../socket/rooms';
+import { checkIfPlayerIsInRoom } from '../socket/utils';
 import { PlayingCard } from './types';
+import { PlayerSocket } from '../socket/types';
 
 export function shuffleDeck(deck: PlayingCard[]): PlayingCard[] {
   for (let i = deck.length - 1; i > 0; i -= 1) {
@@ -25,4 +28,29 @@ export function dealCards(deck: PlayingCard[], playerCount: number): PlayingCard
   }
 
   return dealtCards;
+}
+
+export function checkIfPlayerHasCard(socket: PlayerSocket, card: PlayingCard): boolean {
+  const { player } = socket;
+  const { roomId } = player;
+
+  if (roomId) {
+    const room = rooms[roomId];
+
+    if (room) {
+      const { hand } = room.players[player.id];
+
+      if (hand) {
+        return hand.some(
+          (handCard) => handCard.name === card.name && handCard.suit === card.suit,
+        );
+      }
+    }
+  }
+
+  return false;
+}
+
+export function validatePlay(socket: PlayerSocket, card: PlayingCard): boolean {
+  return checkIfPlayerIsInRoom(socket) && checkIfPlayerHasCard(socket, card);
 }
