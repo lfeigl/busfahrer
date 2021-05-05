@@ -16,6 +16,8 @@
           :name="card.name"
           :suit="card.suit"
           :max-width="playingCardMaxWidth"
+          class="playing-card"
+          @click.native="playCard(card)"
         />
       </div>
     </v-card-text>
@@ -27,6 +29,7 @@ import Vue from 'vue';
 import vuex from 'vuex';
 import PlayingCardComponent from '@/components/play/PlayingCard.vue';
 import PlayingCardMaxWidth from '@/mixins/playing-card-max-width';
+import { PlayingCard } from '@/types';
 
 export default Vue.extend({
   name: 'PlayersCards',
@@ -52,5 +55,28 @@ export default Vue.extend({
   created() {
     this.playingCardRowCount = Math.ceil(this.hand.length / 3);
   },
+  methods: {
+    ...vuex.mapMutations([
+      'SET_ACTIVE_DIALOG',
+    ]),
+    playCard(card: PlayingCard): void {
+      this.$socket.client.emit('playCard', card, (isValidPlay: boolean) => {
+        if (isValidPlay) {
+          // show dispense dialog
+        } else {
+          this.SET_ACTIVE_DIALOG({
+            dialogName: 'invalidPlay',
+            isActive: true,
+          });
+        }
+      });
+    },
+  },
 });
 </script>
+
+<style scoped>
+.playing-card {
+  cursor: pointer;
+}
+</style>
