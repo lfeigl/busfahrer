@@ -58,7 +58,7 @@ import vuex from 'vuex';
 import { isEmptyString } from '@/utils';
 
 export default Vue.extend({
-  name: 'WelcomeDialog',
+  name: 'Welcome',
   data() {
     return {
       playerName: '',

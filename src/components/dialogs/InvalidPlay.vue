@@ -32,7 +32,7 @@ import Vue from 'vue';
 import vuex from 'vuex';
 
 export default Vue.extend({
-  name: 'InvalidPlayDialog',
+  name: 'InvalidPlay',
   computed: {
     ...vuex.mapState([
       'activeDialogs',

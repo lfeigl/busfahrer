@@ -32,7 +32,7 @@ import Vue from 'vue';
 import vuex from 'vuex';
 
 export default Vue.extend({
-  name: 'RoomRemovedDialog',
+  name: 'RoomRemoved',
   computed: {
     ...vuex.mapState([
       'activeDialogs',

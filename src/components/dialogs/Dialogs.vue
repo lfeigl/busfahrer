@@ -1,26 +1,26 @@
 <template>
   <div>
-    <InvalidPlayDialog />
-    <RemoveRoomDialog />
-    <RoomRemovedDialog />
-    <WelcomeDialog />
+    <InvalidPlay />
+    <RemoveRoom />
+    <RoomRemoved />
+    <Welcome />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import InvalidPlayDialog from './InvalidPlayDialog.vue';
-import RemoveRoomDialog from './RemoveRoomDialog.vue';
-import RoomRemovedDialog from './RoomRemovedDialog.vue';
-import WelcomeDialog from './WelcomeDialog.vue';
+import InvalidPlay from './InvalidPlay.vue';
+import RemoveRoom from './RemoveRoom.vue';
+import RoomRemoved from './RoomRemoved.vue';
+import Welcome from './Welcome.vue';
 
 export default Vue.extend({
   name: 'Dialogs',
   components: {
-    InvalidPlayDialog,
-    RemoveRoomDialog,
-    RoomRemovedDialog,
-    WelcomeDialog,
+    InvalidPlay,
+    RemoveRoom,
+    RoomRemoved,
+    Welcome,
   },
 });
 </script>
