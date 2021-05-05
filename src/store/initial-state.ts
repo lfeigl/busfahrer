@@ -12,6 +12,7 @@ const initialState: StoreState = {
     welcome: false,
     removeRoom: false,
     roomRemoved: false,
+    invalidPlay: false,
   },
   player: {
     id: '',
