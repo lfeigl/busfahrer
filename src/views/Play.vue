@@ -13,8 +13,6 @@
         <CoPlayers />
       </v-col>
     </v-row>
-
-    <InvalidPlayDialog />
   </v-container>
 </template>
 
@@ -25,7 +23,6 @@ import { Route, NavigationGuardNext } from 'vue-router';
 import PlayerHand from '@/components/play/PlayerHand.vue';
 import Fir from '@/components/play/Fir.vue';
 import CoPlayers from '@/components/common/CoPlayers.vue';
-import InvalidPlayDialog from '@/components/play/InvalidPlayDialog.vue';
 import EventListenerResize from '@/mixins/event-listener-resize';
 
 export default Vue.extend({
@@ -34,7 +31,6 @@ export default Vue.extend({
     PlayerHand,
     Fir,
     CoPlayers,
-    InvalidPlayDialog,
   },
   mixins: [
     EventListenerResize,

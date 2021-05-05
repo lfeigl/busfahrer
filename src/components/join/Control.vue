@@ -40,22 +40,16 @@
         Losfahren
       </v-btn>
     </v-card-actions>
-
-    <RemoveRoomDialog />
   </v-card>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
 import vuex from 'vuex';
-import RemoveRoomDialog from '@/components/join/RemoveRoomDialog.vue';
 import { PlayingCard } from '@/types';
 
 export default Vue.extend({
   name: 'Control',
-  components: {
-    RemoveRoomDialog,
-  },
   computed: {
     ...vuex.mapState([
       'player',
