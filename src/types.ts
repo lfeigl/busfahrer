@@ -18,6 +18,10 @@ export type Player = {
   name: string;
 };
 
+export type Players = {
+  [id: string]: Player;
+};
+
 export type PlayerStat = {
   key: string;
   value: number;
@@ -40,9 +44,7 @@ export type Room = {
   name: string;
   isOpen: boolean;
   owner: Player;
-  players: {
-    [playerId: string]: Player;
-  };
+  players: Players;
   firCards: PlayingCard[],
 };
 

@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-row>
-      <v-col cols="3">
+      <v-col cols="2">
         <PlayerHand />
       </v-col>
 
@@ -9,8 +9,8 @@
         <Fir />
       </v-col>
 
-      <v-col cols="3">
-        <CoPlayers />
+      <v-col cols="4">
+        <DispenseGulps />
       </v-col>
     </v-row>
   </v-container>
@@ -22,7 +22,7 @@ import vuex from 'vuex';
 import { Route, NavigationGuardNext } from 'vue-router';
 import PlayerHand from '@/components/play/PlayerHand.vue';
 import Fir from '@/components/play/Fir.vue';
-import CoPlayers from '@/components/common/CoPlayers.vue';
+import DispenseGulps from '@/components/play/DispenseGulps.vue';
 import EventListenerResize from '@/mixins/event-listener-resize';
 
 export default Vue.extend({
@@ -30,7 +30,7 @@ export default Vue.extend({
   components: {
     PlayerHand,
     Fir,
-    CoPlayers,
+    DispenseGulps,
   },
   mixins: [
     EventListenerResize,
