@@ -2,10 +2,14 @@ import { StoreState } from '@/types';
 
 const initialState: StoreState = {
   busfahrerApp: {
-    name: process.env.VUE_APP_NAME,
-    version: process.env.VUE_APP_VERSION,
-    author: process.env.VUE_APP_AUTHOR,
-    homepage: process.env.VUE_APP_HOMEPAGE,
+    name: process.env.VUE_APP_NAME ? process.env.VUE_APP_NAME
+      : 'Busfahrer',
+    version: process.env.VUE_APP_VERSION ? process.env.VUE_APP_VERSION
+      : '0.0.0',
+    author: process.env.VUE_APP_AUTHOR ? process.env.VUE_APP_AUTHOR
+      : 'Luca Feigl',
+    homepage: process.env.VUE_APP_HOMEPAGE ? process.env.VUE_APP_HOMEPAGE
+      : 'https://github.com/lfeigl/busfahrer',
   },
   theme: 'dark',
   activeDialogs: {
