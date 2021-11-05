@@ -13,27 +13,33 @@ export default (socket: PlayerSocket, roomId: string, callback?: RoomCallback): 
 
   socketUtils.leaveJoinedRooms(socket, leaveRoom);
 
-  if (room && room.isOpen) {
-    socket.join(roomId);
-    player.roomId = roomId;
-    room.players[player.id] = {
-      ...player,
-      socketId: socket.id,
-    };
+  if (room) {
+    if (room.isOpen) {
+      socket.join(roomId);
+      player.roomId = roomId;
+      room.players[player.id] = {
+        ...player,
+        socketId: socket.id,
+      };
 
-    log(`Player "${player.name}" (${player.id}) joined room "${room.name}" (${roomId}).`);
-    socket.to(roomId).emit('playerJoinedRoom', player);
+      log(`Player "${player.name}" (${player.id}) joined room "${room.name}" (${roomId}).`);
+      socket.to(roomId).emit('playerJoinedRoom', player);
 
-    if (Object.keys(room.players).length >= 18) {
-      room.isOpen = false;
+      if (Object.keys(room.players).length >= 18) {
+        room.isOpen = false;
+      }
+
+      if (callback) {
+        callback(room);
+      }
     }
 
     if (callback) {
-      callback(room);
+      callback(null, 'alreadyStarted');
     }
   }
 
   if (callback) {
-    callback(null);
+    callback(null, 'nonExistent');
   }
 };
