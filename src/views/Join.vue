@@ -45,10 +45,16 @@ export default Vue.extend({
     },
   },
   created() {
-    this.$socket.client.emit('joinRoom', this.roomId, (room: Room) => {
+    this.$socket.client.emit('joinRoom', this.roomId, (room: Room, rejectReason: string) => {
       if (room) {
         this.SET_ROOM(room);
       } else {
+        this.SET_DIALOG_STATE({
+          dialogName: 'joinRejected',
+          isActive: true,
+          data: rejectReason,
+        });
+
         this.$router.push({
           name: 'Home',
         });
@@ -58,6 +64,7 @@ export default Vue.extend({
   methods: {
     ...vuex.mapMutations([
       'SET_ROOM',
+      'SET_DIALOG_STATE',
     ]),
   },
 });

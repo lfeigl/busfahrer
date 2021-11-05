@@ -54,6 +54,12 @@ export type StoreState = {
   activeDialogs: {
     [dialogName: string]: boolean;
   };
+  dialogs: {
+    [dialogName: string]: {
+      isActive: boolean,
+      data?: unknown,
+    },
+  },
   player: Player;
   playerStats: {
     [statKey: string]: PlayerStat;
@@ -73,6 +79,12 @@ export type StoreState = {
 export type SetActiveDialogMutationPayload = {
   dialogName: string;
   isActive: boolean;
+};
+
+export type SetDialogStateMutationPayload = {
+  dialogName: string;
+  isActive: boolean;
+  data?: unknown;
 };
 
 export type StoreActionContext = ActionContext<StoreState, StoreState>;

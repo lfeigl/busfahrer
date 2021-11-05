@@ -7,6 +7,7 @@ import {
   StoreState,
   StoreActionContext,
   SetActiveDialogMutationPayload,
+  SetDialogStateMutationPayload,
   Room,
   Player,
   PlayingCard,
@@ -23,6 +24,18 @@ export default new Vuex.Store({
     },
     SET_ACTIVE_DIALOG(state: StoreState, payload: SetActiveDialogMutationPayload): void {
       state.activeDialogs[payload.dialogName] = payload.isActive;
+    },
+    SET_DIALOG_STATE(state: StoreState, payload: SetDialogStateMutationPayload): void {
+      const {
+        dialogName,
+        isActive,
+        data,
+      } = payload;
+
+      Vue.set(state.dialogs, dialogName, {
+        isActive,
+        data,
+      });
     },
     SET_PLAYER_ID(state: StoreState, id: string): void {
       state.player.id = id;
