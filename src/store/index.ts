@@ -6,7 +6,6 @@ import initialState from '@/store/initial-state';
 import {
   StoreState,
   StoreActionContext,
-  SetActiveDialogMutationPayload,
   SetDialogStateMutationPayload,
   Room,
   Player,
@@ -21,9 +20,6 @@ export default new Vuex.Store({
   mutations: {
     SET_THEME(state: StoreState, theme: string): void {
       state.theme = theme;
-    },
-    SET_ACTIVE_DIALOG(state: StoreState, payload: SetActiveDialogMutationPayload): void {
-      state.activeDialogs[payload.dialogName] = payload.isActive;
     },
     SET_DIALOG_STATE(state: StoreState, payload: SetDialogStateMutationPayload): void {
       const {
@@ -78,7 +74,7 @@ export default new Vuex.Store({
       });
 
       context.commit('SET_ROOM', initialState.room);
-      context.commit('SET_ACTIVE_DIALOG', {
+      context.commit('SET_DIALOG_STATE', {
         dialogName: 'roomRemoved',
         isActive: true,
       });

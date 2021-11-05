@@ -57,14 +57,14 @@ export default Vue.extend({
   },
   methods: {
     ...vuex.mapMutations([
-      'SET_ACTIVE_DIALOG',
+      'SET_DIALOG_STATE',
     ]),
     playCard(card: PlayingCard): void {
       this.$socket.client.emit('playCard', card, (isValidPlay: boolean) => {
         if (isValidPlay) {
           // show dispense dialog
         } else {
-          this.SET_ACTIVE_DIALOG({
+          this.SET_DIALOG_STATE({
             dialogName: 'invalidPlay',
             isActive: true,
           });

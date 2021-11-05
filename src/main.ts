@@ -21,7 +21,7 @@ new Vue({
     if (store.state.player.name) {
       this.$socket.client.emit('setPlayer', store.state.player);
     } else {
-      store.commit('SET_ACTIVE_DIALOG', {
+      store.commit('SET_DIALOG_STATE', {
         dialogName: 'welcome',
         isActive: true,
       });

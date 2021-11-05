@@ -61,12 +61,12 @@ export default Vue.extend({
   },
   methods: {
     ...vuex.mapMutations([
-      'SET_ACTIVE_DIALOG',
+      'SET_DIALOG_STATE',
       'ADD_FIR_CARD',
     ]),
     leaveRoom(): void {
       if (this.room.owner.id === this.player.id && Object.keys(this.room.players).length > 1) {
-        this.SET_ACTIVE_DIALOG({
+        this.SET_DIALOG_STATE({
           dialogName: 'removeRoom',
           isActive: true,
         });

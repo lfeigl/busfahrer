@@ -1,6 +1,6 @@
 <template>
   <v-dialog
-    v-model="activeDialogs.invalidPlay"
+    v-model="isActive"
     persistent
     width="unset"
   >
@@ -35,15 +35,18 @@ export default Vue.extend({
   name: 'InvalidPlay',
   computed: {
     ...vuex.mapState([
-      'activeDialogs',
+      'dialogs',
     ]),
+    isActive(): boolean {
+      return this.dialogs.invalidPlay.isActive;
+    },
   },
   methods: {
     ...vuex.mapMutations([
-      'SET_ACTIVE_DIALOG',
+      'SET_DIALOG_STATE',
     ]),
     closeDialog(): void {
-      this.SET_ACTIVE_DIALOG({
+      this.SET_DIALOG_STATE({
         dialogName: 'invalidPlay',
         isActive: false,
       });

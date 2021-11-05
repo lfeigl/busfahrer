@@ -1,6 +1,6 @@
 <template>
   <v-dialog
-    v-model="activeDialogs.removeRoom"
+    v-model="isActive"
     persistent
     width="unset"
   >
@@ -44,15 +44,18 @@ export default Vue.extend({
   name: 'RemoveRoom',
   computed: {
     ...vuex.mapState([
-      'activeDialogs',
+      'dialogs',
     ]),
+    isActive(): boolean {
+      return this.dialogs.removeRoom.isActive;
+    },
   },
   methods: {
     ...vuex.mapMutations([
-      'SET_ACTIVE_DIALOG',
+      'SET_DIALOG_STATE',
     ]),
     closeDialog(): void {
-      this.SET_ACTIVE_DIALOG({
+      this.SET_DIALOG_STATE({
         dialogName: 'removeRoom',
         isActive: false,
       });

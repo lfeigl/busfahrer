@@ -12,14 +12,20 @@ const initialState: StoreState = {
       : 'https://github.com/lfeigl/busfahrer',
   },
   theme: 'dark',
-  activeDialogs: {
-    welcome: false,
-    removeRoom: false,
-    roomRemoved: false,
-    invalidPlay: false,
-  },
   dialogs: {
+    invalidPlay: {
+      isActive: false,
+    },
     joinRejected: {
+      isActive: false,
+    },
+    removeRoom: {
+      isActive: false,
+    },
+    roomRemoved: {
+      isActive: false,
+    },
+    welcome: {
       isActive: false,
     },
   },

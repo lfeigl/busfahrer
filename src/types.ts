@@ -51,9 +51,6 @@ export type Room = {
 export type StoreState = {
   busfahrerApp: BusfahrerApp;
   theme: string;
-  activeDialogs: {
-    [dialogName: string]: boolean;
-  };
   dialogs: {
     [dialogName: string]: {
       isActive: boolean,
@@ -74,11 +71,6 @@ export type StoreState = {
   };
   room: Room;
   hand: PlayingCard[],
-};
-
-export type SetActiveDialogMutationPayload = {
-  dialogName: string;
-  isActive: boolean;
 };
 
 export type SetDialogStateMutationPayload = {
