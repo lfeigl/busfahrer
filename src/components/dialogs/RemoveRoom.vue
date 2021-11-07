@@ -1,54 +1,40 @@
 <template>
-  <v-dialog
-    v-model="isActive"
-    persistent
-    width="unset"
+  <Dialog
+    name="removeRoom"
+    title="Warnung"
+    text="Wenn du aussteigst müssen alle Mitfahrer den Bus verlassen!"
   >
-    <v-card>
-      <v-card-title class="text-h5">
-        Warnung
-      </v-card-title>
+    <template #buttons>
+      <v-btn
+        color="primary"
+        text
+        @click="closeDialog"
+      >
+        Sitzenbleiben
+      </v-btn>
 
-      <v-card-text>
-        Wenn du aussteigst müssen alle Mitfahrer den Bus verlassen!
-      </v-card-text>
+      <v-spacer />
 
-      <v-card-actions>
-        <v-btn
-          color="primary"
-          text
-          @click="closeDialog"
-        >
-          Sitzenbleiben
-        </v-btn>
-
-        <v-spacer />
-
-        <v-btn
-          color="error"
-          text
-          @click="leaveRoom"
-        >
-          Aussteigen
-        </v-btn>
-      </v-card-actions>
-    </v-card>
-  </v-dialog>
+      <v-btn
+        color="error"
+        text
+        @click="leaveRoom"
+      >
+        Aussteigen
+      </v-btn>
+    </template>
+  </Dialog>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
 import vuex from 'vuex';
+import Dialog from '@/components/common/Dialog.vue';
 
 export default Vue.extend({
   name: 'RemoveRoom',
-  computed: {
-    ...vuex.mapState([
-      'dialogs',
-    ]),
-    isActive(): boolean {
-      return this.dialogs.removeRoom.isActive;
-    },
+  components: {
+    Dialog,
   },
   methods: {
     ...vuex.mapMutations([

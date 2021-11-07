@@ -1,77 +1,63 @@
 <template>
-  <v-dialog
-    v-model="isActive"
-    persistent
-    width="unset"
+  <Dialog
+    name="welcome"
+    title="Willkommen zu Busfahrer!"
+    subtitle="Bitte einsteigen!"
   >
-    <v-card>
-      <v-card-title class="text-h4">
-        Willkommen zu Busfahrer!
-      </v-card-title>
+    <template #content>
+      <v-text-field
+        v-model="playerName"
+        counter
+        maxlength="16"
+        label="Dein Name"
+        hide-details="auto"
+      />
 
-      <v-card-subtitle class="text-h6">
-        Bitte einsteigen!
-      </v-card-subtitle>
+      <v-checkbox
+        v-model="isOfLegalAge"
+        label="Ich darf in meinem Land legal Alkohol konsumieren."
+      />
 
-      <v-card-text>
-        <v-text-field
-          v-model="playerName"
-          counter
-          maxlength="16"
-          label="Dein Name"
-          hide-details="auto"
-        />
+      <v-alert
+        class="mt-4"
+        type="success"
+        outlined
+      >
+        Es werden <strong>keine</strong> personenbezogene Daten erhoben
+        und <strong>keine</strong> Cookies verwendet.
+      </v-alert>
+    </template>
 
-        <v-checkbox
-          v-model="isOfLegalAge"
-          label="Ich darf in meinem Land legal Alkohol konsumieren."
-        />
-
-        <v-alert
-          class="mt-4"
-          type="success"
-          outlined
-        >
-          Es werden <strong>keine</strong> personenbezogene Daten erhoben
-          und <strong>keine</strong> Cookies verwendet.
-        </v-alert>
-      </v-card-text>
-
-      <v-card-actions>
-        <v-spacer />
-        <v-btn
-          color="primary"
-          text
-          :disabled="isEmptyString(playerName) || !isOfLegalAge"
-          @click="submitPlayerName"
-        >
-          Einsteigen
-        </v-btn>
-      </v-card-actions>
-    </v-card>
-  </v-dialog>
+    <template #buttons>
+      <v-spacer />
+      <v-btn
+        color="primary"
+        text
+        :disabled="isEmptyString(playerName) || !isOfLegalAge"
+        @click="submitPlayerName"
+      >
+        Einsteigen
+      </v-btn>
+    </template>
+  </Dialog>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
 import vuex from 'vuex';
 import { isEmptyString } from '@/utils';
+import Dialog from '@/components/common/Dialog.vue';
 
 export default Vue.extend({
   name: 'Welcome',
+  components: {
+    Dialog,
+  },
   data() {
     return {
       playerName: '',
       isOfLegalAge: false,
     };
-  },
-  computed: {
-    ...vuex.mapState([
-      'dialogs',
-    ]),
-    isActive(): boolean {
-      return this.dialogs.welcome.isActive;
-    },
   },
   methods: {
     isEmptyString,
