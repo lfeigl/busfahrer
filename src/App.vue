@@ -6,7 +6,7 @@
     />
 
     <v-main>
-      <Dialogs />
+      <DialogRegistry />
       <router-view v-if="playerName" />
     </v-main>
 
@@ -22,14 +22,14 @@ import Vue from 'vue';
 import vuex from 'vuex';
 import AppBar from '@/components/common/AppBar.vue';
 import Footer from '@/components/common/Footer.vue';
-import Dialogs from '@/components/dialogs/Dialogs.vue';
+import DialogRegistry from '@/components/dialogs/DialogRegistry.vue';
 
 export default Vue.extend({
   name: 'App',
   components: {
     AppBar,
     Footer,
-    Dialogs,
+    DialogRegistry,
   },
   computed: {
     ...vuex.mapState([
