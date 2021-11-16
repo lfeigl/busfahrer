@@ -70,8 +70,8 @@ export type StoreState = {
     };
   };
   room: Room;
-  hand: PlayingCard[],
   game: {
+    hand: PlayingCard[],
     gulps: {
       distributable: number;
       available: number;

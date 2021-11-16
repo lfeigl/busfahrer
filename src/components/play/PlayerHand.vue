@@ -49,8 +49,11 @@ export default Vue.extend({
   },
   computed: {
     ...vuex.mapState([
-      'hand',
+      'game',
     ]),
+    hand(): PlayingCard[] {
+      return this.game.hand;
+    },
   },
   created() {
     this.playingCardRowCount = Math.ceil(this.hand.length / 3);

@@ -52,7 +52,7 @@ export default new Vuex.Store({
       state.room.firCards.push(firCard);
     },
     SET_HAND(state: StoreState, hand: PlayingCard[]): void {
-      state.hand = hand;
+      state.game.hand = hand;
     },
     SET_DISTRIBUTABLE_GULPS(state: StoreState, distributableGulps: number): void {
       state.game.gulps.distributable = distributableGulps;

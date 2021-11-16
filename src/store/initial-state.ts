@@ -91,8 +91,8 @@ const initialState: StoreState = {
     players: {},
     firCards: [],
   },
-  hand: [],
   game: {
+    hand: [],
     gulps: {
       distributable: 0,
       available: 0,
