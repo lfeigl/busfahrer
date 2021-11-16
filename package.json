@@ -34,7 +34,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@mdi/font": "^5.9.55",
+    "@mdi/font": "^6.5.95",
     "change-case": "^4.1.2",
     "connect-history-api-fallback": "^1.6.0",
     "debounce": "^1.2.1",
