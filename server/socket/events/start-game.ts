@@ -19,6 +19,7 @@ export default (socket: PlayerSocket, roomId: string, callback?: GameCallback): 
     room.deck = gameUtils.shuffleDeck(deck);
     room.firCards = room.deck.splice(0, 15);
     room.currentFirCard = room.firCards.pop();
+    room.activeRow = 1;
 
     const dealtCards = gameUtils.dealCards(room.deck, playerCount);
 
@@ -27,6 +28,7 @@ export default (socket: PlayerSocket, roomId: string, callback?: GameCallback): 
         const hand = dealtCards.pop();
 
         coPlayer.hand = hand;
+        coPlayer.distributableGulps = 0;
 
         if (coPlayer.id === player.id) {
           socket.emit('dealtHand', hand);
