@@ -15,13 +15,21 @@
     </v-card-title>
 
     <v-card-subtitle class="subtitle-1">
-      {{ availableGulps }} / {{ totalGulps }} Schlücke verfügbar
+      {{ availableGulps }} / {{ distributableGulps }} Schlücke verfügbar
+      <v-btn
+        icon
+        @click="withdraw"
+      >
+        <v-icon color="error">
+          mdi-arrow-u-left-top
+        </v-icon>
+      </v-btn>
     </v-card-subtitle>
 
     <v-card-text>
       <v-list>
         <v-list-item
-          v-for="player in players"
+          v-for="player in coPlayers"
           :key="player.id"
         >
           <v-list-item-icon>
@@ -50,15 +58,34 @@
                   dense
                   class="input-text-center px-1"
                   hide-details="auto"
-                  prepend-icon="mdi-format-vertical-align-bottom"
-                  prepend-inner-icon="mdi-minus-circle-outline"
-                  append-icon="mdi-plus-circle-outline"
-                  append-outer-icon="mdi-format-vertical-align-top"
-                  @click:prepend="setToZero(player.id)"
-                  @click:prepend-inner="decrement(player.id)"
-                  @click:append="increment(player.id)"
-                  @click:append-outer="setToMax(player.id)"
-                />
+                >
+                  <template #prepend-inner>
+                    <v-icon
+                      :disabled="playerGulps[player.id] === 0"
+                      @click="decrement(player.id)"
+                    >
+                      mdi-minus-circle-outline
+                    </v-icon>
+                  </template>
+
+                  <template #append>
+                    <v-icon
+                      :disabled="availableGulps === 0"
+                      @click="increment(player.id)"
+                    >
+                      mdi-plus-circle-outline
+                    </v-icon>
+                  </template>
+
+                  <template #append-outer>
+                    <v-icon
+                      :disabled="playerGulps[player.id] === distributableGulps"
+                      @click="setToMax(player.id)"
+                    >
+                      mdi-plus-circle-multiple-outline
+                    </v-icon>
+                  </template>
+                </v-text-field>
               </v-col>
             </v-row>
           </v-list-item-content>
@@ -78,8 +105,6 @@ export default Vue.extend({
   data() {
     return {
       playFinished: false,
-      totalGulps: 42,
-      availableGulps: 0,
       playerGulps: {} as { [playerId: string]: number },
     };
   },
@@ -87,26 +112,42 @@ export default Vue.extend({
     ...vuex.mapState([
       'player',
       'room',
+      'game',
     ]),
-    players(): Players {
+    distributableGulps(): number {
+      return this.game.gulps.distributable;
+    },
+    availableGulps(): number {
+      return this.game.gulps.available;
+    },
+    coPlayers(): Players {
       const players = { ...this.room.players };
       delete players[this.player.id];
       return players;
     },
   },
   created() {
-    this.availableGulps = this.totalGulps;
-    Object.keys(this.players).forEach((playerId) => {
+    Object.keys(this.coPlayers).forEach((playerId) => {
       Vue.set(this.playerGulps, playerId, 0);
     });
   },
   methods: {
+    ...vuex.mapMutations([
+      'SET_AVAILABLE_GULPS',
+    ]),
+    withdraw(): void {
+      Object.keys(this.coPlayers).forEach((playerId) => {
+        Vue.set(this.playerGulps, playerId, 0);
+      });
+
+      this.SET_AVAILABLE_GULPS(this.distributableGulps);
+    },
     increment(playerId: string): void {
       const gulps = this.playerGulps[playerId];
 
       if (this.availableGulps > 0) {
         Vue.set(this.playerGulps, playerId, gulps + 1);
-        this.availableGulps -= 1;
+        this.SET_AVAILABLE_GULPS(this.availableGulps - 1);
       }
     },
     decrement(playerId: string): void {
@@ -114,22 +155,13 @@ export default Vue.extend({
 
       if (gulps > 0) {
         Vue.set(this.playerGulps, playerId, gulps - 1);
-        this.availableGulps += 1;
+        this.SET_AVAILABLE_GULPS(this.availableGulps + 1);
       }
     },
     setToMax(playerId: string): void {
-      Object.keys(this.room.players).forEach((playerId1) => {
-        Vue.set(this.playerGulps, playerId1, 0);
-      });
-      Vue.set(this.playerGulps, playerId, this.totalGulps);
-      this.availableGulps = 0;
-    },
-    setToZero(playerId: string): void {
-      const gulps = this.playerGulps[playerId];
-
-      Vue.set(this.playerGulps, playerId, 0);
-
-      this.availableGulps += gulps;
+      this.withdraw();
+      Vue.set(this.playerGulps, playerId, this.distributableGulps);
+      this.SET_AVAILABLE_GULPS(0);
     },
     finishPlay(): void {
       this.playFinished = true;
