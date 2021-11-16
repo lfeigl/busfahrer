@@ -61,9 +61,7 @@ export default Vue.extend({
     ]),
     playCard(card: PlayingCard): void {
       this.$socket.client.emit('playCard', card, (isValidPlay: boolean) => {
-        if (isValidPlay) {
-          // show dispense dialog
-        } else {
+        if (!isValidPlay) {
           this.SET_DIALOG_STATE({
             dialogName: 'invalidPlay',
             isActive: true,
