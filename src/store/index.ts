@@ -54,6 +54,12 @@ export default new Vuex.Store({
     SET_HAND(state: StoreState, hand: PlayingCard[]): void {
       state.hand = hand;
     },
+    SET_DISTRIBUTABLE_GULPS(state: StoreState, distributableGulps: number): void {
+      state.game.gulps.distributable = distributableGulps;
+    },
+    SET_AVAILABLE_GULPS(state: StoreState, availableGulps: number): void {
+      state.game.gulps.available = availableGulps;
+    },
   },
   actions: {
     socketPlayerJoinedRoom(context: StoreActionContext, player: Player): void {
@@ -67,6 +73,16 @@ export default new Vuex.Store({
     },
     socketFlippedFirCard(context: StoreActionContext, firCard: PlayingCard): void {
       context.commit('ADD_FIR_CARD', firCard);
+    },
+    socketNewDistributableGulps(context: StoreActionContext, newDistributableGulps: number): void {
+      const {
+        distributable: oldDistributableGulps,
+        available: availableGulps,
+      } = context.state.game.gulps;
+      const distributableGulpsDiff = newDistributableGulps - oldDistributableGulps;
+
+      context.commit('SET_DISTRIBUTABLE_GULPS', newDistributableGulps);
+      context.commit('SET_AVAILABLE_GULPS', availableGulps + distributableGulpsDiff);
     },
     async socketRoomRemoved(context: StoreActionContext): Promise<void> {
       await router.push({

@@ -92,6 +92,12 @@ const initialState: StoreState = {
     firCards: [],
   },
   hand: [],
+  game: {
+    gulps: {
+      distributable: 0,
+      available: 0,
+    },
+  },
 };
 
 export default initialState;

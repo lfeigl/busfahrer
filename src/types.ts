@@ -71,6 +71,12 @@ export type StoreState = {
   };
   room: Room;
   hand: PlayingCard[],
+  game: {
+    gulps: {
+      distributable: number;
+      available: number;
+    },
+  },
 };
 
 export type SetDialogStateMutationPayload = {
