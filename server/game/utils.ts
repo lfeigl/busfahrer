@@ -1,7 +1,11 @@
 import rooms from '../socket/rooms';
 import { checkIfPlayerIsInRoom } from '../socket/utils';
 import { PlayingCard } from './types';
-import { PlayerSocket } from '../socket/types';
+import { PlayerSocket, Room } from '../socket/types';
+
+export function checkCardsForEquality(cardA: PlayingCard, cardB: PlayingCard): boolean {
+  return cardA.name === cardB.name && cardA.suit === cardB.suit;
+}
 
 export function shuffleDeck(deck: PlayingCard[]): PlayingCard[] {
   for (let i = deck.length - 1; i > 0; i -= 1) {
@@ -42,7 +46,7 @@ export function checkIfPlayerHasCard(socket: PlayerSocket, card: PlayingCard): b
 
       if (hand) {
         return hand.some(
-          (handCard) => handCard.name === card.name && handCard.suit === card.suit,
+          (handCard) => checkCardsForEquality(handCard, card),
         );
       }
     }
@@ -51,6 +55,12 @@ export function checkIfPlayerHasCard(socket: PlayerSocket, card: PlayingCard): b
   return false;
 }
 
-export function validatePlay(socket: PlayerSocket, card: PlayingCard): boolean {
-  return checkIfPlayerIsInRoom(socket) && checkIfPlayerHasCard(socket, card);
+export function checkIfPlayIsValid(room: Room, card: PlayingCard): boolean {
+  return card.value === room.currentFirCard?.value;
+}
+
+export function validatePlay(socket: PlayerSocket, room: Room, card: PlayingCard): boolean {
+  return checkIfPlayerIsInRoom(socket)
+    && checkIfPlayerHasCard(socket, card)
+    && checkIfPlayIsValid(room, card);
 }
