@@ -101,7 +101,7 @@ import vuex from 'vuex';
 import { Players } from '@/types';
 
 export default Vue.extend({
-  name: 'DispenseGulps',
+  name: 'DistributeGulps',
   data() {
     return {
       playFinished: false,

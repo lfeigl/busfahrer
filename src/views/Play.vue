@@ -10,7 +10,7 @@
       </v-col>
 
       <v-col cols="4">
-        <DispenseGulps />
+        <DistributeGulps />
       </v-col>
     </v-row>
   </v-container>
@@ -22,7 +22,7 @@ import vuex from 'vuex';
 import { Route, NavigationGuardNext } from 'vue-router';
 import PlayerHand from '@/components/play/PlayerHand.vue';
 import Fir from '@/components/play/Fir.vue';
-import DispenseGulps from '@/components/play/DispenseGulps.vue';
+import DistributeGulps from '@/components/play/DistributeGulps.vue';
 import EventListenerResize from '@/mixins/event-listener-resize';
 
 export default Vue.extend({
@@ -30,7 +30,7 @@ export default Vue.extend({
   components: {
     PlayerHand,
     Fir,
-    DispenseGulps,
+    DistributeGulps,
   },
   mixins: [
     EventListenerResize,
