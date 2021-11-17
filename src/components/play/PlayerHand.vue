@@ -61,10 +61,13 @@ export default Vue.extend({
   methods: {
     ...vuex.mapMutations([
       'SET_DIALOG_STATE',
+      'SET_HAND',
     ]),
     playCard(card: PlayingCard): void {
-      this.$socket.client.emit('playCard', card, (isValidPlay: boolean) => {
-        if (!isValidPlay) {
+      this.$socket.client.emit('playCard', card, (isValidPlay: boolean, hand: PlayingCard[]) => {
+        if (isValidPlay) {
+          this.SET_HAND(hand);
+        } else {
           this.SET_DIALOG_STATE({
             dialogName: 'invalidPlay',
             isActive: true,

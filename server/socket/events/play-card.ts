@@ -22,7 +22,7 @@ export default (socket: PlayerSocket, card: PlayingCard, callback?: PlayCallback
 
             if (cardIndex) {
               player.hand?.splice(cardIndex, 1);
-              callback(true);
+              callback(true, player.hand);
               socket.emit('newDistributableGulps', player.distributableGulps);
             }
           }

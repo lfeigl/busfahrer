@@ -39,4 +39,4 @@ export type RoomCallback = (room?: Room | null, rejectReason?: string) => void;
 
 export type GameCallback = (card?: PlayingCard | null) => void;
 
-export type PlayCallback = (isValidPlay?: boolean) => void;
+export type PlayCallback = (isValidPlay?: boolean, hand?: PlayingCard[]) => void;
