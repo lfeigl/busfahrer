@@ -18,6 +18,7 @@
       {{ availableGulps }} / {{ distributableGulps }} Schlücke verfügbar
       <v-btn
         icon
+        :disabled="playFinished"
         @click="withdraw"
       >
         <v-icon color="error">
@@ -52,7 +53,6 @@
               <v-col cols="7">
                 <v-text-field
                   v-model="playerGulps[player.id]"
-                  :disabled="playFinished"
                   readonly
                   outlined
                   dense
@@ -61,7 +61,7 @@
                 >
                   <template #prepend-inner>
                     <v-icon
-                      :disabled="playerGulps[player.id] === 0"
+                      :disabled="playFinished || playerGulps[player.id] === 0"
                       @click="decrement(player.id)"
                     >
                       mdi-minus-circle-outline
@@ -70,7 +70,7 @@
 
                   <template #append>
                     <v-icon
-                      :disabled="availableGulps === 0"
+                      :disabled="playFinished || availableGulps === 0"
                       @click="increment(player.id)"
                     >
                       mdi-plus-circle-outline
@@ -79,7 +79,7 @@
 
                   <template #append-outer>
                     <v-icon
-                      :disabled="playerGulps[player.id] === distributableGulps"
+                      :disabled="playFinished || playerGulps[player.id] === distributableGulps"
                       @click="setToMax(player.id)"
                     >
                       mdi-plus-circle-multiple-outline
