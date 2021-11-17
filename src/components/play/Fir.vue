@@ -50,7 +50,7 @@ export default Vue.extend({
         firCards.push({});
       }
 
-      for (let i = 5; i >= 1; i -= 1) {
+      for (let i = this.playingCardRowCount; i >= 1; i -= 1) {
         const start = end;
         end = start + i;
         const row = firCards.slice(start, end);
