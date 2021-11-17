@@ -8,6 +8,7 @@ export type Player = {
   roomId?: string;
   hand?: PlayingCard[],
   distributableGulps?: number;
+  playFinished: boolean;
 };
 
 export type Players = {

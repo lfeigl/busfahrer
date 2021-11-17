@@ -34,6 +34,10 @@ function handlePlayerSocketEvents(socket: Socket, player: Player): void {
     events.playCard(playerSocket, card, callback);
   });
 
+  socket.on('finishPlay', (callback?: GameCallback) => {
+    events.finishPlay(playerSocket, callback);
+  });
+
   socket.on('disconnect', () => {
     if (playerSocket.player) {
       events.disconnect(playerSocket);
