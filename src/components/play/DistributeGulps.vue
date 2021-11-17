@@ -98,7 +98,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import vuex from 'vuex';
-import { Players } from '@/types';
+import { Players, PlayingCard } from '@/types';
 
 export default Vue.extend({
   name: 'DistributeGulps',
@@ -134,6 +134,7 @@ export default Vue.extend({
   methods: {
     ...vuex.mapMutations([
       'SET_AVAILABLE_GULPS',
+      'ADD_FIR_CARD',
     ]),
     withdraw(): void {
       Object.keys(this.coPlayers).forEach((playerId) => {
@@ -165,6 +166,11 @@ export default Vue.extend({
     },
     finishPlay(): void {
       this.playFinished = true;
+      this.$socket.client.emit('finishPlay', (firCard?: PlayingCard) => {
+        if (firCard) {
+          this.ADD_FIR_CARD(firCard);
+        }
+      });
     },
   },
 });
