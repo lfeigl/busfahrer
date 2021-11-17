@@ -27,10 +27,10 @@ export default Vue.extend({
       default: null,
     },
   },
-  data() {
-    return {
-      filename: playingCardFilenames[this.name],
-    };
+  computed: {
+    filename(): string {
+      return playingCardFilenames[this.name];
+    },
   },
 });
 </script>
