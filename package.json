@@ -24,14 +24,15 @@
     "serve": "vue-cli-service serve",
     "watch-client": "vue-cli-service build --mode development --watch",
     "watch-server": "ts-node-dev --project tsconfig-server.json --clear server",
-    "lint": "npm run lint-client && npm run lint-server",
+    "lint": "pnpm lint-client && pnpm lint-server",
     "lint-client": "vue-cli-service lint --no-fix",
     "lint-server": "eslint server/**/*",
-    "build": "npm run build-client && npm run build-server",
+    "build": "pnpm build-client && pnpm build-server",
     "build-client": "vue-cli-service build",
     "build-server": "tsc --project tsconfig-server.json",
     "start": "node build",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
     "@mdi/font": "^6.5.95",

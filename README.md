@@ -1,9 +1,13 @@
 # Busfahrer
 Online multiplayer in-browser implementation of the notorious German drinking game Busfahrer.
 
+## Requirements
+- [Node.js](https://nodejs.org)
+- [pnpm](https://pnpm.io)
+
 ## Project setup
 ```
-npm install
+pnpm install
 ```
 
 
@@ -14,32 +18,32 @@ npm install
 #### Compiles and hot-reloads the client in-memory for development
 *Note: The backend will **not** be able to serve the frontend.*
 ```
-npm run serve
+pnpm serve
 ```
 
 #### Compiles and hot-reloads the client on-disk for development
 ```
-npm run watch-client
+pnpm watch-client
 ```
 
 #### Compiles and hot-reloads the server in-memory for development
 ```
-npm run watch-server
+pnpm watch-server
 ```
 
 #### Lints files on clientside and serverside
 ```
-npm run lint
+pnpm lint
 ```
 
 #### Lints files on clientside
 ```
-npm run lint-client
+pnpm lint-client
 ```
 
 #### Lints files on serverside
 ```
-npm run lint-server
+pnpm lint-server
 ```
 
 
@@ -47,22 +51,22 @@ npm run lint-server
 
 #### Compiles and minifies the client and the server for production
 ```
-npm run build
+pnpm build
 ```
 
 #### Compiles and minifies the client for production
 ```
-npm run build-client
+pnpm build-client
 ```
 
 #### Compiles and minifies the server for production
 ```
-npm run build-server
+pnpm build-server
 ```
 
 #### Starts the server for production
 ```
-npm start
+pnpm start
 ```
 
 
@@ -71,11 +75,11 @@ Server accepts following arguments:
 
 Argument | Type | Description | Default value | Example usage
 --- | --- | --- | --- | ---
-`port` | `number` | Port on which the server listens. | `1337` | `npm start -- --port 3000`
-`log` | `boolean` | Whether to keep a log file (`./busfahrer.log`) or not. | `false` | `npm start -- --log`
+`port` | `number` | Port on which the server listens. | `1337` | `pnpm start -- --port 3000`
+`log` | `boolean` | Whether to keep a log file (`./busfahrer.log`) or not. | `false` | `pnpm start -- --log`
 
-- *Production: `npm start`*
-- *Development: `npm run watch-server`*
+- *Production: `pnpm start`*
+- *Development: `pnpm watch-server`*
 
 
 ## Socket events
