@@ -16,6 +16,7 @@ export type PlayingCard = {
 export type Player = {
   id: string;
   name: string;
+  playFinished?: boolean;
 };
 
 export type Players = {

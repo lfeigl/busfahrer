@@ -18,7 +18,7 @@
       {{ availableGulps }} / {{ distributableGulps }} Schlücke verfügbar
       <v-btn
         icon
-        :disabled="playFinished"
+        :disabled="playFinished || !distributableGulps || availableGulps === distributableGulps"
         @click="withdraw"
       >
         <v-icon color="error">
@@ -34,10 +34,7 @@
           :key="player.id"
         >
           <v-list-item-icon>
-            <v-icon v-if="room.owner.id === player.id">
-              mdi-account-star
-            </v-icon>
-            <v-icon v-else>
+            <v-icon :color="player.playFinished ? 'success' : 'error'">
               mdi-account
             </v-icon>
           </v-list-item-icon>
@@ -130,6 +127,11 @@ export default Vue.extend({
     Object.keys(this.coPlayers).forEach((playerId) => {
       Vue.set(this.playerGulps, playerId, 0);
     });
+
+    this.$socket.client.on('coPlayerFinishedPlay', (playerId: string) => {
+      this.coPlayers[playerId].playFinished = true;
+      this.$forceUpdate();
+    });
   },
   methods: {
     ...vuex.mapMutations([
@@ -138,7 +140,7 @@ export default Vue.extend({
     ]),
     withdraw(): void {
       Object.keys(this.coPlayers).forEach((playerId) => {
-        Vue.set(this.playerGulps, playerId, 0);
+        this.playerGulps[playerId] = 0;
       });
 
       this.SET_AVAILABLE_GULPS(this.distributableGulps);
@@ -147,7 +149,7 @@ export default Vue.extend({
       const gulps = this.playerGulps[playerId];
 
       if (this.availableGulps > 0) {
-        Vue.set(this.playerGulps, playerId, gulps + 1);
+        this.playerGulps[playerId] = gulps + 1;
         this.SET_AVAILABLE_GULPS(this.availableGulps - 1);
       }
     },
@@ -155,13 +157,13 @@ export default Vue.extend({
       const gulps = this.playerGulps[playerId];
 
       if (gulps > 0) {
-        Vue.set(this.playerGulps, playerId, gulps - 1);
+        this.playerGulps[playerId] = gulps - 1;
         this.SET_AVAILABLE_GULPS(this.availableGulps + 1);
       }
     },
     setToMax(playerId: string): void {
       this.withdraw();
-      Vue.set(this.playerGulps, playerId, this.distributableGulps);
+      this.playerGulps[playerId] = this.distributableGulps;
       this.SET_AVAILABLE_GULPS(0);
     },
     finishPlay(): void {

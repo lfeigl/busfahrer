@@ -11,6 +11,7 @@ export default (socket: PlayerSocket, callback?: GameCallback): void => {
 
     if (room) {
       room.players[player.id].playFinished = true;
+      socket.to(roomId).emit('coPlayerFinishedPlay', player.id);
 
       const allPlaysFinished = !Object.values(room.players)
         .some((coPlayer) => !coPlayer.playFinished);
