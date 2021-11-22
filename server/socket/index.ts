@@ -8,6 +8,7 @@ import {
   RoomCallback,
   GameCallback,
   PlayCallback,
+  PlayerGulps,
 } from './types';
 import { PlayingCard } from '../game/types';
 
@@ -34,8 +35,8 @@ function handlePlayerSocketEvents(socket: Socket, player: Player): void {
     events.playCard(playerSocket, card, callback);
   });
 
-  socket.on('finishPlay', (callback?: GameCallback) => {
-    events.finishPlay(playerSocket, callback);
+  socket.on('finishPlay', (playerGulps: PlayerGulps, callback?: GameCallback) => {
+    events.finishPlay(playerSocket, playerGulps, callback);
   });
 
   socket.on('disconnect', () => {

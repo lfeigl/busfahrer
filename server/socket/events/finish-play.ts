@@ -1,8 +1,12 @@
 import rooms from '../rooms';
-import { PlayerSocket, GameCallback } from '../types';
 import { log } from '../../utils';
+import {
+  PlayerSocket,
+  GameCallback,
+  PlayerGulps,
+} from '../types';
 
-export default (socket: PlayerSocket, callback?: GameCallback): void => {
+export default (socket: PlayerSocket, playerGulps: PlayerGulps, callback?: GameCallback): void => {
   const { player } = socket;
   const { roomId } = player;
 
@@ -12,6 +16,21 @@ export default (socket: PlayerSocket, callback?: GameCallback): void => {
     if (room) {
       room.players[player.id].playFinished = true;
       socket.to(roomId).emit('coPlayerFinishedPlay', player.id);
+
+      Object.keys(playerGulps).forEach((playerId: string) => {
+        const gulps = playerGulps[playerId];
+
+        if (gulps > 0) {
+          const coPlayer = room.players[playerId];
+
+          if (coPlayer.socketId) {
+            socket.to(coPlayer.socketId).emit('receivedGulps', {
+              playerName: player.name,
+              gulps,
+            });
+          }
+        }
+      });
 
       const allPlaysFinished = !Object.values(room.players)
         .some((coPlayer) => !coPlayer.playFinished);

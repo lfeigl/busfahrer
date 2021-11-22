@@ -35,6 +35,10 @@ export type Rooms = {
   [id: string]: Room | undefined;
 };
 
+export type PlayerGulps = {
+  [playerId: string]: number;
+};
+
 export type RoomCallback = (room?: Room | null, rejectReason?: string) => void;
 
 export type GameCallback = (card?: PlayingCard | null) => void;
