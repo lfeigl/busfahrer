@@ -10,6 +10,7 @@ import {
   Room,
   Player,
   PlayingCard,
+  ReceivedGulpsPayload,
 } from '@/types';
 
 Vue.use(Vuex);
@@ -68,11 +69,13 @@ export default new Vuex.Store({
     socketPlayerLeftRoom(context: StoreActionContext, player: Player): void {
       context.commit('REMOVE_PLAYER', player);
     },
+    async socketGameStarted(): Promise<void> {
+      await router.push({
+        name: 'Play',
+      });
+    },
     socketDealtHand(context: StoreActionContext, hand: PlayingCard[]): void {
       context.commit('SET_HAND', hand);
-    },
-    socketFlippedFirCard(context: StoreActionContext, firCard: PlayingCard): void {
-      context.commit('ADD_FIR_CARD', firCard);
     },
     socketNewDistributableGulps(context: StoreActionContext, newDistributableGulps: number): void {
       const {
@@ -84,6 +87,16 @@ export default new Vuex.Store({
       context.commit('SET_DISTRIBUTABLE_GULPS', newDistributableGulps);
       context.commit('SET_AVAILABLE_GULPS', availableGulps + distributableGulpsDiff);
     },
+    socketReceivedGulps(context: StoreActionContext, payload: ReceivedGulpsPayload): void {
+      context.commit('SET_DIALOG_STATE', {
+        dialogName: 'receivedGulps',
+        isActive: true,
+        data: payload,
+      });
+    },
+    socketFlippedFirCard(context: StoreActionContext, firCard: PlayingCard): void {
+      context.commit('ADD_FIR_CARD', firCard);
+    },
     async socketRoomRemoved(context: StoreActionContext): Promise<void> {
       await router.push({
         name: 'Home',
@@ -93,11 +106,6 @@ export default new Vuex.Store({
       context.commit('SET_DIALOG_STATE', {
         dialogName: 'roomRemoved',
         isActive: true,
-      });
-    },
-    async socketGameStarted(): Promise<void> {
-      await router.push({
-        name: 'Play',
       });
     },
   },

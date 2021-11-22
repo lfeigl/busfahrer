@@ -13,20 +13,29 @@ const initialState: StoreState = {
   },
   theme: 'dark',
   dialogs: {
+    receivedGulps: {
+      isActive: false,
+      data: null,
+    },
     invalidPlay: {
       isActive: false,
+      data: null,
     },
     joinRejected: {
       isActive: false,
+      data: null,
     },
     removeRoom: {
       isActive: false,
+      data: null,
     },
     roomRemoved: {
       isActive: false,
+      data: null,
     },
     welcome: {
       isActive: false,
+      data: null,
     },
   },
   player: {

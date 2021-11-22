@@ -55,7 +55,7 @@ export type StoreState = {
   dialogs: {
     [dialogName: string]: {
       isActive: boolean,
-      data?: unknown,
+      data: unknown,
     },
   },
   player: Player;
@@ -87,3 +87,8 @@ export type SetDialogStateMutationPayload = {
 };
 
 export type StoreActionContext = ActionContext<StoreState, StoreState>;
+
+export type ReceivedGulpsPayload = {
+  playerName: string,
+  gulps: number,
+};
