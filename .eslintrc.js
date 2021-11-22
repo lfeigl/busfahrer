@@ -9,13 +9,29 @@ module.exports = {
     '@vue/typescript/recommended',
   ],
   parserOptions: {
-    ecmaVersion: 2020,
+    ecmaVersion: 'latest',
   },
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'warn',
-    'no-param-reassign': ['error', { props: false }],
-    '@typescript-eslint/typedef': 'error',
+    'no-param-reassign': ['error', {
+      props: false,
+    }],
     '@typescript-eslint/explicit-function-return-type': 'error',
+    '@typescript-eslint/member-delimiter-style': ['error', {
+      multiline: {
+        delimiter: 'semi',
+        requireLast: true,
+      },
+      singleline: {
+        delimiter: 'semi',
+        requireLast: false,
+      },
+    }],
+    '@typescript-eslint/typedef': ['error', {
+      arrowParameter: true,
+      parameter: true,
+      propertyDeclaration: true,
+    }],
   },
   overrides: [
     {

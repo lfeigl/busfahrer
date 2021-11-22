@@ -46,7 +46,7 @@ export type Room = {
   isOpen: boolean;
   owner: Player;
   players: Players;
-  firCards: PlayingCard[],
+  firCards: PlayingCard[];
 };
 
 export type StoreState = {
@@ -54,10 +54,10 @@ export type StoreState = {
   theme: string;
   dialogs: {
     [dialogName: string]: {
-      isActive: boolean,
-      data: unknown,
-    },
-  },
+      isActive: boolean;
+      data: unknown;
+    };
+  };
   player: Player;
   playerStats: {
     [statKey: string]: PlayerStat;
@@ -72,12 +72,12 @@ export type StoreState = {
   };
   room: Room;
   game: {
-    hand: PlayingCard[],
+    hand: PlayingCard[];
     gulps: {
       distributable: number;
       available: number;
-    },
-  },
+    };
+  };
 };
 
 export type SetDialogStateMutationPayload = {
@@ -89,6 +89,6 @@ export type SetDialogStateMutationPayload = {
 export type StoreActionContext = ActionContext<StoreState, StoreState>;
 
 export type ReceivedGulpsPayload = {
-  playerName: string,
-  gulps: number,
+  playerName: string;
+  gulps: number;
 };

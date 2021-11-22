@@ -17,7 +17,7 @@ export default (socket: PlayerSocket, card: PlayingCard, callback?: PlayCallback
             player.distributableGulps += room.activeRow;
 
             const cardIndex = player.hand?.findIndex(
-              (handCard) => checkCardsForEquality(handCard, card),
+              (handCard: PlayingCard) => checkCardsForEquality(handCard, card),
             );
 
             if (cardIndex) {

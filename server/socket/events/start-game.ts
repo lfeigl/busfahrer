@@ -3,8 +3,9 @@ import getFullDeck from '../../game/deck';
 import * as gameUtils from '../../game/utils';
 import { log } from '../../utils';
 import {
-  GameCallback,
+  Player,
   PlayerSocket,
+  GameCallback,
 } from '../types';
 
 export default (socket: PlayerSocket, roomId: string, callback?: GameCallback): void => {
@@ -23,7 +24,7 @@ export default (socket: PlayerSocket, roomId: string, callback?: GameCallback): 
 
     const dealtCards = gameUtils.dealCards(room.deck, playerCount);
 
-    Object.values(room.players).forEach((coPlayer) => {
+    Object.values(room.players).forEach((coPlayer: Player) => {
       if (coPlayer.socketId) {
         const hand = dealtCards.pop();
 

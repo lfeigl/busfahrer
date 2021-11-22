@@ -1,5 +1,5 @@
 export type PlayingCard = {
-  name: string,
-  suit: string,
-  value: number,
+  name: string;
+  suit: string;
+  value: number;
 };

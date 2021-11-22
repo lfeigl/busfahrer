@@ -46,7 +46,7 @@ export function checkIfPlayerHasCard(socket: PlayerSocket, card: PlayingCard): b
 
       if (hand) {
         return hand.some(
-          (handCard) => checkCardsForEquality(handCard, card),
+          (handCard: PlayingCard) => checkCardsForEquality(handCard, card),
         );
       }
     }

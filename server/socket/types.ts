@@ -6,7 +6,7 @@ export type Player = {
   name: string;
   socketId?: string;
   roomId?: string;
-  hand?: PlayingCard[],
+  hand?: PlayingCard[];
   distributableGulps?: number;
   playFinished: boolean;
 };
@@ -25,9 +25,9 @@ export type Room = {
   isOpen: boolean;
   owner: Player;
   players: Players;
-  deck: PlayingCard[],
-  firCards: PlayingCard[],
-  currentFirCard?: PlayingCard,
+  deck: PlayingCard[];
+  firCards: PlayingCard[];
+  currentFirCard?: PlayingCard;
   activeRow?: number;
 };
 

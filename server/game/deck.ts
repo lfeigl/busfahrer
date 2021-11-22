@@ -23,9 +23,7 @@ const suits = [
   'spades',
 ];
 
-const values: {
-  [name: string]: number,
-} = {
+const values: { [name: string]: number } = {
   ace: 100,
   two: 2,
   three: 3,
@@ -44,8 +42,8 @@ const values: {
 const fullDeck = ((): PlayingCard[] => {
   const playingCards: PlayingCard[] = [];
 
-  names.forEach((name) => {
-    suits.forEach((suit) => {
+  names.forEach((name: string) => {
+    suits.forEach((suit: string) => {
       const playingCard: PlayingCard = {
         name,
         suit,

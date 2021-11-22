@@ -2,9 +2,7 @@ export function isEmptyString(string: string): boolean {
   return string.replaceAll(' ', '').length === 0;
 }
 
-export const playingCardFilenames: {
-  [cardName: string]: string,
-} = {
+export const playingCardFilenames: { [cardName: string]: string } = {
   back1: '01.svg',
   back2: '02.svg',
   ace: '01.svg',

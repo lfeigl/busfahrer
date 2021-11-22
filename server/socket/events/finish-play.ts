@@ -1,6 +1,7 @@
 import rooms from '../rooms';
 import { log } from '../../utils';
 import {
+  Player,
   PlayerSocket,
   GameCallback,
   PlayerGulps,
@@ -33,7 +34,7 @@ export default (socket: PlayerSocket, playerGulps: PlayerGulps, callback?: GameC
       });
 
       const allPlaysFinished = !Object.values(room.players)
-        .some((coPlayer) => !coPlayer.playFinished);
+        .some((coPlayer: Player) => !coPlayer.playFinished);
 
       if (allPlaysFinished) {
         room.currentFirCard = room.firCards.pop();
