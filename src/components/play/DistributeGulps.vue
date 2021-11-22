@@ -124,7 +124,7 @@ export default Vue.extend({
     },
   },
   created() {
-    Object.keys(this.coPlayers).forEach((playerId) => {
+    Object.keys(this.coPlayers).forEach((playerId: string) => {
       Vue.set(this.playerGulps, playerId, 0);
     });
 
@@ -139,7 +139,7 @@ export default Vue.extend({
       'ADD_FIR_CARD',
     ]),
     withdraw(): void {
-      Object.keys(this.coPlayers).forEach((playerId) => {
+      Object.keys(this.coPlayers).forEach((playerId: string) => {
         this.playerGulps[playerId] = 0;
       });
 
@@ -168,7 +168,7 @@ export default Vue.extend({
     },
     finishPlay(): void {
       this.playFinished = true;
-      this.$socket.client.emit('finishPlay', (firCard?: PlayingCard) => {
+      this.$socket.client.emit('finishPlay', this.playerGulps, (firCard?: PlayingCard) => {
         if (firCard) {
           this.ADD_FIR_CARD(firCard);
         }
